@@ -46,11 +46,11 @@ De schaal, de contractsoort, de cao en de reden van het einde bestaan alleen bij
 - Het **`aanstellingscontractID`**, het **`verzuimID`** en het **`formatieplaatsID`** zijn binnen een levering uniek en in elke levering dezelfde voor hetzelfde object.
 - De **`code`** van een functie en de **`organisatieIdentificatie`** van een organisatorische eenheid zijn de sleutels die de gemeente zelf gebruikt.
 
-Hoe de sleutel van een werknemer precies wordt gemaakt, is een [openstaande keuze](VraagEnAntwoord.md#openstaande-keuzes).
+Hoe de sleutel van een werknemer precies wordt gemaakt, ligt nog niet vast.
 
 ## Historie
 
-- **Contractomvang.** Het veld `urenPerWeek` bevat de omvang aan het einde van de verslagperiode, of aan het einde van het contract als dat eerder ligt. Hoe een wijziging van de contracturen binnen een contract wordt geleverd, is een openstaande keuze.
+- **Contractomvang.** Het veld `urenPerWeek` bevat de omvang aan het einde van de verslagperiode, of aan het einde van het contract als dat eerder ligt. Hoe een wijziging van de contracturen binnen een contract wordt geleverd, ligt nog niet vast.
 - **Percentage arbeidsongeschiktheid.** Het veld `percentageArbeidsongeschiktheid` van een verzuimgeval bevat het laatst geldende percentage. Is het percentage tijdens het verzuim gewijzigd, bijvoorbeeld bij gedeeltelijk herstel, dan staat de historie in `verloop`: één regel per periode, met de begindatum en het percentage. Een wijziging van het percentage is geen nieuw verzuimgeval.
 - **Formatie.** Een wijziging van de omvang van een formatieplaats wordt geleverd als een nieuwe formatieplaats met een eigen begindatum; de oude krijgt een einddatum.
 

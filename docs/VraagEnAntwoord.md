@@ -30,15 +30,3 @@ Het contract legt vast dat en voor hoeveel uur iemand voor de organisatie werkt.
 
 **Wat is het verschil tussen een leidinggevende functie en een leidinggevende rol?**
 `leidinggevend` bij de functie zegt dat aan de functie leidinggevende taken zijn verbonden. De rol met rolsoort `Leidinggevende` zegt wie in welke periode feitelijk leiding geeft aan welke eenheid. Beide zijn nodig: de eerste voor de indeling van functies, de tweede voor de span of control.
-
-## Openstaande keuzes
-
-1. **Niveau van de levering.** Registratieniveau, zoals in dit concept, of berekening van indicatoren bij de bron. De keuze volgt uit de DPIA.
-2. **Afnemer en rolverdeling.** Welke organisatie het Verzuimportaal beheert, wie verwerkingsverantwoordelijke is en hoe een gemeente toestemming geeft.
-3. **Sleutel van de werknemer.** Hoe de sleutel wordt gemaakt, zodat hij stabiel is en niet tot een persoon te herleiden.
-4. **Historie van de contractomvang.** Hoe een wijziging van de uren binnen een contract wordt geleverd.
-5. **Verplichte velden.** In versie 0.1 volgt de verplichting de kardinaliteit in het informatiemodel. Wij horen graag van leveranciers welke verplichte velden niet haalbaar zijn.
-6. **Afbakening van de organisatie.** Welke medewerkers en organisatieonderdelen meetellen, zoals de griffie en de sociale werkvoorziening.
-7. **Frequentie en historie.** Jaarlijks of vaker, en vanaf welk jaar gegevens beschikbaar zijn.
-8. **Andere overheden.** Wat nodig is om ook provincies en waterschappen aan te sluiten; een levering is nu aan een gemeentecode gebonden.
-9. **Technische uitwerking van het transport.** Zie [Koppelvlak API](api/index.md#nog-uit-te-werken).

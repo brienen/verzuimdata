@@ -2,7 +2,7 @@
 
 ## Inleiding
 
-De uitwisselspecificatie legt vast welke gegevens worden aangeleverd en in welke vorm. De vastlegging is een [JSON-schema](https://json-schema.org) (versie 2020-12). Het schema is afgeleid van het [informatiemodel](Hoofdlijnen_Model HR.md). Een beschrijving in gewone taal staat op de pagina [Uitwisselspecificatie uitgelegd](uitleg_Uitwisselmodel.md).
+De uitwisselspecificatie legt vast welke gegevens worden aangeleverd en in welke vorm. De vastlegging is een [JSON-schema](https://json-schema.org) (versie 2020-12). Het schema is afgeleid van het [informatiemodel](Hoofdlijnen_Model HR.md). De betekenis van elk veld staat als omschrijving in het schema; de definities van de objecttypen en waardelijsten staan in de [detailspecificatie](definities/Detail_Model HR.md).
 
 Een bericht is als volgt opgebouwd:
 
@@ -30,7 +30,7 @@ Een aantal regels kan een JSON-schema niet uitdrukken. Zij staan op de pagina [S
 
 Van het schema is ook een [downloadversie](https://raw.githubusercontent.com/brienen/verzuimdata/main/v0.1/json_schema_Uitwisselmodel.json) beschikbaar.
 
-<details><summary>Toon JSON-schema</summary>
+<details open><summary>Toon JSON-schema</summary>
 ``` { .json .copy }
 {!../v0.1/json_schema_Uitwisselmodel.json!}
 ```
@@ -54,7 +54,7 @@ Eén levering voor één gemeente, met één werknemer met een arbeidsovereenkom
 
 Twee leveringen van één leverancier voor twee gemeenten. Het voorbeeld laat alle soorten aanstelling zien (arbeidsovereenkomst, detachering, stage), een leidinggevende rol, inzet voor derden, een verzuimgeval met gedeeltelijk herstel, lopend verzuim en verlof. Dit voorbeeld is ook te [downloaden](https://raw.githubusercontent.com/brienen/verzuimdata/main/v0.1/meervoudigVoorbeeld.json).
 
-<details><summary>Toon voorbeeldbestand</summary>
+<details open><summary>Toon voorbeeldbestand</summary>
 ``` { .json .copy }
 {!../v0.1/meervoudigVoorbeeld.json!}
 ```

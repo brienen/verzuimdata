@@ -35,4 +35,4 @@ De uitwisselspecificatie neemt niet alles over en voegt een paar dingen toe:
 - Het bericht krijgt een **omslag**: het bericht zelf, de levering per gemeente en de aanleverende organisatie.
 - De historie van het percentage arbeidsongeschiktheid wordt geleverd als **verloop** binnen het verzuimgeval.
 
-De precieze inhoud van een bericht staat op de pagina [Uitwisselspecificatie uitgelegd](uitleg_Uitwisselmodel.md).
+De precieze inhoud van een bericht staat in het [JSON-schema](uitwisselspecificatie.md).

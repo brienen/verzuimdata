@@ -11,10 +11,8 @@ Deze site beschrijft hoe HR-softwareleveranciers die gegevens namens gemeenten g
 
 | Onderdeel | Inhoud |
 | :--- | :--- |
-| [Uitwisselspecificatie uitgelegd](uitleg_Uitwisselmodel.md) | Welke gegevens een bericht bevat, per onderdeel en in gewone taal. Begin hier. |
-| [JSON-schema en voorbeelden](uitwisselspecificatie.md) | De technische vastlegging van het bericht, met voorbeeldbestanden. |
+| [JSON-schema en voorbeelden](uitwisselspecificatie.md) | De opbouw van een bericht, het JSON-schema en voorbeeldbestanden. Begin hier. |
 | [Selectie en aanlevering](aanlevering.md) | Welke werknemers, contracten en verzuimgevallen in een levering horen, en de regels voor sleutels en historie. |
-| [Van gegevens naar indicatoren](indicatoren.md) | Waarvoor de gegevens worden gebruikt. |
 | [Informatiemodel](Hoofdlijnen_Model HR.md) | De betekenis van de gegevens: objecttypen, kenmerken en waardelijsten uit het Gemeentelijk Gegevensmodel. |
 | [Koppelvlak API](api/index.md) | Hoe de berichten worden opgehaald en beveiligd. Dit deel is nog op hoofdlijnen. |
 
@@ -24,7 +22,7 @@ Een **informatiemodel** beschrijft de gegevens van een domein en hun onderlinge 
 
 Een **uitwisselspecificatie** legt vast welke gegevens uit het informatiemodel worden uitgewisseld en in welke vorm. Niet alles uit het informatiemodel wordt uitgewisseld: direct identificerende gegevens van werknemers, salarisbedragen en kosten blijven in de bron.
 
-Beide worden uit hetzelfde model gegenereerd. Het JSON-schema, de tabellen op deze site en de detailspecificatie van het informatiemodel kunnen daardoor niet van elkaar afwijken.
+Beide worden uit hetzelfde model gegenereerd. Het JSON-schema en de detailspecificatie van het informatiemodel kunnen daardoor niet van elkaar afwijken.
 
 ## Reageren
 

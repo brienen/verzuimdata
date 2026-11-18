@@ -24,14 +24,6 @@ Het [Gemeentelijk Gegevensmodel](https://www.gemeentelijkgegevensmodel.nl/) (GGM
 - vaste waardelijsten in plaats van vrije tekst of losse objecttypen;
 - een definitie en toelichting bij elk objecttype, kenmerk en elke relatie.
 
-## Planning
-
-| Periode | Stap |
-| :--- | :--- |
-| 2026 | Voorgesprekken met leveranciers op basis van dit concept |
-| 2027 | Afstemming en vaststelling van de specificatie, DPIA, pilot met enkele gemeenten, aansluiting van de eerste leveranciers |
-| Vanaf 2028 | Gebruik in het Verzuimportaal |
-
 ## Hoe deze site is gemaakt
 
-Het informatiemodel wordt met [crunch_uml](https://github.com/brienen/crunch_uml) uit het GGM gelezen. Twee kleine plugins leiden daaruit het informatiemodel en het uitwisselmodel van deze specificatie af; het JSON-schema, de detailspecificatie en de uitleg worden uit die modellen gegenereerd. De bron staat in de [repository](https://github.com/brienen/verzuimdata).
+Het informatiemodel wordt met [crunch_uml](https://github.com/brienen/crunch_uml) uit het GGM gelezen. Twee kleine plugins leiden daaruit het informatiemodel en het uitwisselmodel van deze specificatie af; het JSON-schema en de detailspecificatie worden uit die modellen gegenereerd. De bron staat in de [repository](https://github.com/brienen/verzuimdata).

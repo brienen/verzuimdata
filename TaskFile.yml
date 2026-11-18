@@ -147,14 +147,12 @@ tasks:
     shell: bash
 
   generate:docs:
-    desc: "Genereer de detailspecificatie, de uitleg en de pagina's met een versienummer."
+    desc: "Genereer de detailspecificatie en de pagina's met een versienummer."
     deps: [import:model]
     cmds:
       - mkdir -p "{{.DEFS}}"
       - echo "Detailspecificatie van het informatiemodel genereren..."
       - '"{{.VENV_BIN}}/crunch_uml" -sch {{.IM_SCHEMA}} export -t jinja2 --output_jinja2_template informatiemodel.j2 --output_jinja2_templatedir ./tools/ -f "{{.DEFS}}/Detail.md"'
-      - echo "Uitleg van het uitwisselmodel genereren..."
-      - '"{{.VENV_BIN}}/crunch_uml" -sch {{.UM_SCHEMA}} export -t jinja2 --output_jinja2_template uitleg.j2 --output_jinja2_templatedir ./tools/ -f "{{.DOCS}}/uitleg.md"'
       - |
         # Vul het versienummer in de sjabloonpagina's in: <naam>.md.template -> <naam>.md
         find "{{.DOCS}}" -type f -name "*.template" | while read -r sjabloon; do

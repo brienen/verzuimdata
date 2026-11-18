@@ -26,7 +26,7 @@ task alles        # installeert de tooling, genereert alles en controleert het r
 task build:serve  # toont de site op http://localhost:8000
 ```
 
-Het JSON-schema, de detailspecificatie en de uitleg worden gegenereerd en staan in git. Wijzig ze niet met de hand: pas het model of de plugins in `tools/` aan en draai `task alles`.
+Het JSON-schema en de detailspecificatie worden gegenereerd en staan in git. Wijzig ze niet met de hand: pas het model of de plugins in `tools/` aan en draai `task alles`.
 
 | Wat | Waar aanpassen |
 | :--- | :--- |

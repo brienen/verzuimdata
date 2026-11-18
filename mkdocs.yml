@@ -18,10 +18,8 @@ extra:
 nav:
   - Home: index.md
   - Uitwisselspecificatie:
-    - Uitgelegd: uitleg_Uitwisselmodel.md
     - JSON-schema en voorbeelden: uitwisselspecificatie.md
     - Selectie en aanlevering: aanlevering.md
-    - Van gegevens naar indicatoren: indicatoren.md
   - Informatiemodel:
     - Hoofdlijnen: "Hoofdlijnen_Model HR.md"
     - Detailspecificatie: "definities/Detail_Model HR.md"
