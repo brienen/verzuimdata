@@ -23,15 +23,3 @@ Een **informatiemodel** beschrijft de gegevens van een domein en hun onderlinge 
 Een **uitwisselspecificatie** legt vast welke gegevens uit het informatiemodel worden uitgewisseld en in welke vorm. Niet alles uit het informatiemodel wordt uitgewisseld: direct identificerende gegevens van werknemers, salarisbedragen en kosten blijven in de bron.
 
 Beide worden uit hetzelfde model gegenereerd. Het JSON-schema en de detailspecificatie van het informatiemodel kunnen daardoor niet van elkaar afwijken.
-
-## Reageren
-
-Wij vragen leveranciers en gemeenten om op dit concept te reageren. Vijf vragen staan daarbij centraal:
-
-1. **Beschikbaarheid.** Welke onderdelen en velden zijn standaard beschikbaar, welke alleen na inrichting bij de gemeente en welke niet? Hoe ver gaat de historie terug?
-2. **Ontsluiting.** Via welke bestaande voorziening kunnen de gegevens het eenvoudigst worden geleverd, en welke ervaring is er met FSC en PKIoverheid?
-3. **Niveau.** Wat is de voorkeur: levering op registratieniveau, zoals in dit concept, of berekening van indicatoren in het pakket? Wat zijn de gevolgen van elk van beide?
-4. **Inspanning.** Wat zijn doorlooptijd en kosten, eenmalig en per aangesloten gemeente?
-5. **Definities.** Waar wijkt de registratie in het pakket af van de definities en waardelijsten in deze specificatie?
-
-Reacties zijn welkom als [issue op GitHub](https://github.com/brienen/verzuimdata/issues).
