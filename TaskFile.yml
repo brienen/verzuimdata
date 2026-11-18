@@ -9,8 +9,8 @@
 # - zet de site lokaal klaar met mike en publiceert haar, alleen op verzoek, naar GitHub Pages.
 #
 # Gebruik:
-# - `task --list` toont alle taken;
-# - `task` (zonder argument) genereert alles en controleert het resultaat, maar publiceert niets;
+# - `task` (zonder argument) toont een overzicht van alle taken;
+# - `task alles` genereert alles en controleert het resultaat, maar publiceert niets;
 # - `task build:serve` toont de site lokaal.
 #
 # Instellingen staan in .env (VERSION, het GGM-bestand, de namen van de plugins).
@@ -49,6 +49,11 @@ vars:
 
 tasks:
   default:
+    desc: "Toon een overzicht van alle taken."
+    cmds:
+      - '"{{.TASK_EXE}}" --list'
+
+  alles:
     desc: "Genereer alles en controleer het resultaat. Publiceert niets."
     cmds:
       - task: build:validate

@@ -21,12 +21,12 @@ De toelichting staat op de [documentatiesite](https://brienen.github.io/verzuimd
 Nodig: [Task](https://taskfile.dev) en [uv](https://docs.astral.sh/uv/) (of Python 3.13).
 
 ```bash
-task              # installeert de tooling, genereert alles en controleert het resultaat
+task              # toont een overzicht van alle taken
+task alles        # installeert de tooling, genereert alles en controleert het resultaat
 task build:serve  # toont de site op http://localhost:8000
-task --list       # alle taken
 ```
 
-Het JSON-schema, de detailspecificatie en de uitleg worden gegenereerd en staan in git. Wijzig ze niet met de hand: pas het model of de plugins in `tools/` aan en draai `task`.
+Het JSON-schema, de detailspecificatie en de uitleg worden gegenereerd en staan in git. Wijzig ze niet met de hand: pas het model of de plugins in `tools/` aan en draai `task alles`.
 
 | Wat | Waar aanpassen |
 | :--- | :--- |
