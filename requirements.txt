@@ -1,0 +1,6 @@
+# Wat nodig is om de documentatiesite te bouwen (ook gebruikt door de controle in GitHub Actions).
+mkdocs==1.6.1
+mkdocs-material==9.6.14
+pymdown-extensions==10.15
+markdown-include==0.8.1
+mike==2.1.3

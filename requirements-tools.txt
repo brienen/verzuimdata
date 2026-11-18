@@ -1,0 +1,8 @@
+# Lokale tooling om het JSON-schema en de documentatie uit het model te genereren.
+# `task install` installeert dit in .venv. De controle in GitHub Actions gebruikt alleen
+# requirements.txt, want de gegenereerde bestanden staan in git.
+# crunch_uml is exact gepind: een andere versie kan andere uitvoer geven.
+-r requirements.txt
+crunch_uml==0.8.6
+jsonschema==4.23.0
+rfc3339-validator==0.1.4

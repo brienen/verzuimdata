@@ -1,0 +1,105 @@
+{
+  "codeGegevensleverancier": "HR-leverancier XYZ, pakket 2026.4",
+  "versieSpecificatie": "v0.1",
+  "startdatumLevering": "2026-01-01",
+  "einddatumLevering": "2026-12-31",
+  "aanleverdatumEnTijd": "2027-01-15T06:30:00Z",
+  "leveringen": [
+    {
+      "teller": 1,
+      "gemeentecode": "9999",
+      "aanleverendeOrganisatie": {
+        "naam": "HR-leverancier XYZ B.V.",
+        "kvkNummer": "12345678",
+        "contactpersonen": [
+          {
+            "naam": "Servicedesk koppelingen",
+            "email": "koppelingen@hr-leverancier-xyz.example",
+            "telefoonnummer": "010 555 01 23"
+          }
+        ]
+      },
+      "organisatorischeEenheden": [
+        {
+          "organisatieIdentificatie": "OE-100",
+          "naam": "Gemeente Voorbeeldstad",
+          "type": "Concern",
+          "datumOntstaan": "2001-01-01"
+        },
+        {
+          "organisatieIdentificatie": "OE-140",
+          "naam": "Team Burgerzaken",
+          "type": "Team",
+          "isDeelVan": "OE-100",
+          "datumOntstaan": "2019-07-01"
+        }
+      ],
+      "functies": [
+        {
+          "code": "F-0231",
+          "naam": "Medewerker burgerzaken",
+          "schaal": 7,
+          "leidinggevend": false,
+          "werkomgeving": "Binnendienst",
+          "normProfiel": {
+            "code": "D01.03.07",
+            "omschrijving": "Medewerker gegevens III",
+            "schaal": 7,
+            "functiehuis": {
+              "naam": "HR21"
+            }
+          }
+        }
+      ],
+      "formatieplaatsen": [
+        {
+          "formatieplaatsID": "FP-0457",
+          "urenPerWeek": 36.0,
+          "datumBegin": "2019-07-01",
+          "functie": "F-0231",
+          "organisatorischeEenheid": "OE-140"
+        }
+      ],
+      "werknemers": [
+        {
+          "werknemerID": "7f3c9a1e52b84d06",
+          "geboortejaar": 1984,
+          "geslachtsaanduiding": "Vrouw",
+          "arbeidsovereenkomsten": [
+            {
+              "aanstellingscontractID": "AC-20418",
+              "aanstellingssoort": "Reguliere arbeidsovereenkomst",
+              "datumStart": "2019-09-01",
+              "urenPerWeek": 32.0,
+              "schaal": 7,
+              "contractsoort": "Onbepaalde tijd",
+              "cao": "Cao Gemeenten",
+              "functie": "F-0231",
+              "organisatorischeEenheid": "OE-140",
+              "formatieplaats": "FP-0457",
+              "inzetten": [
+                {
+                  "datumBegin": "2019-09-01",
+                  "uren": 32.0,
+                  "bestemming": "Eigen organisatie",
+                  "functie": "F-0231",
+                  "organisatorischeEenheid": "OE-140"
+                }
+              ]
+            }
+          ],
+          "verzuimgevallen": [
+            {
+              "verzuimID": "VZ-88213",
+              "datumtijdStart": "2026-03-09T08:30:00+01:00",
+              "datumtijdEinde": "2026-03-13T17:00:00+01:00",
+              "percentageArbeidsongeschiktheid": 100,
+              "verzuimsoort": "Ziekte",
+              "redenEinde": "Hersteld"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

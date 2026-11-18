@@ -1,0 +1,402 @@
+{
+  "codeGegevensleverancier": "HR-leverancier XYZ, pakket 2026.4",
+  "versieSpecificatie": "v0.1",
+  "startdatumLevering": "2026-01-01",
+  "einddatumLevering": "2026-12-31",
+  "aanleverdatumEnTijd": "2027-01-15T06:30:00Z",
+  "leveringen": [
+    {
+      "teller": 1,
+      "gemeentecode": "9999",
+      "aanleverendeOrganisatie": {
+        "naam": "HR-leverancier XYZ B.V.",
+        "kvkNummer": "12345678",
+        "contactpersonen": [
+          {
+            "naam": "Servicedesk koppelingen",
+            "email": "koppelingen@hr-leverancier-xyz.example",
+            "telefoonnummer": "010 555 01 23"
+          }
+        ]
+      },
+      "organisatorischeEenheden": [
+        {
+          "organisatieIdentificatie": "OE-100",
+          "naam": "Gemeente Voorbeeldstad",
+          "type": "Concern",
+          "datumOntstaan": "2001-01-01"
+        },
+        {
+          "organisatieIdentificatie": "OE-120",
+          "naam": "Afdeling Publiekszaken",
+          "type": "Afdeling",
+          "isDeelVan": "OE-100",
+          "datumOntstaan": "2012-01-01"
+        },
+        {
+          "organisatieIdentificatie": "OE-140",
+          "naam": "Team Burgerzaken",
+          "type": "Team",
+          "isDeelVan": "OE-120",
+          "datumOntstaan": "2019-07-01"
+        },
+        {
+          "organisatieIdentificatie": "OE-150",
+          "naam": "Team Wijkbeheer",
+          "type": "Team",
+          "isDeelVan": "OE-120",
+          "datumOntstaan": "2015-01-01",
+          "datumOpheffing": "2026-06-30"
+        }
+      ],
+      "functies": [
+        {
+          "code": "F-0231",
+          "naam": "Medewerker burgerzaken",
+          "schaal": 7,
+          "leidinggevend": false,
+          "werkomgeving": "Binnendienst",
+          "normProfiel": {
+            "code": "D01.03.07",
+            "omschrijving": "Medewerker gegevens III",
+            "schaal": 7,
+            "functiehuis": {
+              "naam": "HR21"
+            }
+          }
+        },
+        {
+          "code": "F-0105",
+          "naam": "Teamleider",
+          "schaal": 11,
+          "leidinggevend": true,
+          "werkomgeving": "Binnendienst",
+          "normProfiel": {
+            "code": "M01.02.11",
+            "omschrijving": "Leidinggevende operationeel II",
+            "schaal": 11,
+            "functiehuis": {
+              "naam": "HR21"
+            }
+          }
+        },
+        {
+          "code": "F-0340",
+          "naam": "Medewerker wijkbeheer",
+          "schaal": 5,
+          "leidinggevend": false,
+          "werkomgeving": "Buitendienst"
+        }
+      ],
+      "formatieplaatsen": [
+        {
+          "formatieplaatsID": "FP-0457",
+          "urenPerWeek": 36.0,
+          "datumBegin": "2019-07-01",
+          "functie": "F-0231",
+          "organisatorischeEenheid": "OE-140"
+        },
+        {
+          "formatieplaatsID": "FP-0458",
+          "urenPerWeek": 36.0,
+          "datumBegin": "2019-07-01",
+          "functie": "F-0231",
+          "organisatorischeEenheid": "OE-140"
+        },
+        {
+          "formatieplaatsID": "FP-0301",
+          "urenPerWeek": 36.0,
+          "datumBegin": "2019-07-01",
+          "functie": "F-0105",
+          "organisatorischeEenheid": "OE-140"
+        },
+        {
+          "formatieplaatsID": "FP-0512",
+          "urenPerWeek": 36.0,
+          "datumBegin": "2015-01-01",
+          "datumEinde": "2026-06-30",
+          "functie": "F-0340",
+          "organisatorischeEenheid": "OE-150"
+        }
+      ],
+      "werknemers": [
+        {
+          "werknemerID": "7f3c9a1e52b84d06",
+          "geboortejaar": 1984,
+          "geslachtsaanduiding": "Vrouw",
+          "arbeidsovereenkomsten": [
+            {
+              "aanstellingscontractID": "AC-20418",
+              "aanstellingssoort": "Reguliere arbeidsovereenkomst",
+              "datumStart": "2019-09-01",
+              "urenPerWeek": 32.0,
+              "schaal": 7,
+              "contractsoort": "Onbepaalde tijd",
+              "cao": "Cao Gemeenten",
+              "functie": "F-0231",
+              "organisatorischeEenheid": "OE-140",
+              "formatieplaats": "FP-0457",
+              "inzetten": [
+                {
+                  "datumBegin": "2019-09-01",
+                  "uren": 32.0,
+                  "bestemming": "Eigen organisatie",
+                  "functie": "F-0231",
+                  "organisatorischeEenheid": "OE-140"
+                }
+              ]
+            }
+          ],
+          "verzuimgevallen": [
+            {
+              "verzuimID": "VZ-88213",
+              "datumtijdStart": "2026-03-09T08:30:00+01:00",
+              "datumtijdEinde": "2026-03-13T17:00:00+01:00",
+              "percentageArbeidsongeschiktheid": 100,
+              "verzuimsoort": "Ziekte",
+              "redenEinde": "Hersteld"
+            }
+          ]
+        },
+        {
+          "werknemerID": "1c0e77ab93f2d5a4",
+          "geboortejaar": 1971,
+          "geslachtsaanduiding": "Man",
+          "arbeidsovereenkomsten": [
+            {
+              "aanstellingscontractID": "AC-10032",
+              "aanstellingssoort": "Reguliere arbeidsovereenkomst",
+              "datumStart": "2008-02-01",
+              "urenPerWeek": 36.0,
+              "schaal": 11,
+              "contractsoort": "Onbepaalde tijd",
+              "cao": "Cao Gemeenten",
+              "functie": "F-0105",
+              "organisatorischeEenheid": "OE-140",
+              "formatieplaats": "FP-0301",
+              "inzetten": [
+                {
+                  "datumBegin": "2019-07-01",
+                  "uren": 36.0,
+                  "bestemming": "Eigen organisatie",
+                  "functie": "F-0105",
+                  "organisatorischeEenheid": "OE-140"
+                }
+              ]
+            }
+          ],
+          "rollen": [
+            {
+              "rolsoort": "Leidinggevende",
+              "omschrijving": "Teamleider Burgerzaken",
+              "datumBegin": "2019-07-01",
+              "organisatorischeEenheid": "OE-140"
+            }
+          ]
+        },
+        {
+          "werknemerID": "b25d6e4c08a17f39",
+          "geboortejaar": 1990,
+          "geslachtsaanduiding": "Man",
+          "arbeidsovereenkomsten": [
+            {
+              "aanstellingscontractID": "AC-23377",
+              "aanstellingssoort": "Reguliere arbeidsovereenkomst",
+              "datumStart": "2025-10-01",
+              "datumEinde": "2026-06-30",
+              "urenPerWeek": 36.0,
+              "schaal": 5,
+              "contractsoort": "Bepaalde tijd",
+              "cao": "Cao Gemeenten",
+              "banenafspraak": true,
+              "redenEinde": "Einde tijdelijk contract",
+              "functie": "F-0340",
+              "organisatorischeEenheid": "OE-150",
+              "formatieplaats": "FP-0512",
+              "inzetten": [
+                {
+                  "datumBegin": "2025-10-01",
+                  "datumEinde": "2026-06-30",
+                  "uren": 28.0,
+                  "bestemming": "Eigen organisatie",
+                  "functie": "F-0340",
+                  "organisatorischeEenheid": "OE-150"
+                },
+                {
+                  "datumBegin": "2025-10-01",
+                  "datumEinde": "2026-06-30",
+                  "uren": 8.0,
+                  "bestemming": "Derden",
+                  "functie": "F-0340",
+                  "organisatorischeEenheid": "OE-150"
+                }
+              ]
+            }
+          ],
+          "verzuimgevallen": [
+            {
+              "verzuimID": "VZ-87001",
+              "datumtijdStart": "2025-11-17T07:30:00+01:00",
+              "datumtijdEinde": "2026-04-06T07:30:00+02:00",
+              "percentageArbeidsongeschiktheid": 50,
+              "verzuimsoort": "Arbeidsongeval",
+              "redenEinde": "Hersteld",
+              "verloop": [
+                {
+                  "datumBegin": "2025-11-17",
+                  "percentageArbeidsongeschiktheid": 100
+                },
+                {
+                  "datumBegin": "2026-02-02",
+                  "percentageArbeidsongeschiktheid": 50
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "werknemerID": "e90a3b7715cc4d21",
+          "geboortejaar": 1979,
+          "geslachtsaanduiding": "Vrouw",
+          "inhuurovereenkomsten": [
+            {
+              "aanstellingscontractID": "AC-I-0091",
+              "aanstellingssoort": "Detachering",
+              "datumStart": "2026-02-01",
+              "datumEinde": "2026-09-30",
+              "urenPerWeek": 24.0,
+              "functie": "F-0231",
+              "organisatorischeEenheid": "OE-140",
+              "formatieplaats": "FP-0458",
+              "inzetten": [
+                {
+                  "datumBegin": "2026-02-01",
+                  "datumEinde": "2026-09-30",
+                  "uren": 24.0,
+                  "bestemming": "Eigen organisatie",
+                  "functie": "F-0231",
+                  "organisatorischeEenheid": "OE-140"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "werknemerID": "46fd12c8a07b9e53",
+          "geboortejaar": 2004,
+          "geslachtsaanduiding": "Onbekend",
+          "overigeAanstellingen": [
+            {
+              "aanstellingscontractID": "AC-S-0412",
+              "aanstellingssoort": "Stageovereenkomst",
+              "datumStart": "2026-09-01",
+              "datumEinde": "2027-01-31",
+              "urenPerWeek": 32.0,
+              "organisatorischeEenheid": "OE-140"
+            }
+          ]
+        },
+        {
+          "werknemerID": "d3a81f60e2b7c945",
+          "geboortejaar": 1993,
+          "geslachtsaanduiding": "Vrouw",
+          "arbeidsovereenkomsten": [
+            {
+              "aanstellingscontractID": "AC-21550",
+              "aanstellingssoort": "Reguliere arbeidsovereenkomst",
+              "datumStart": "2021-05-01",
+              "urenPerWeek": 28.0,
+              "schaal": 7,
+              "contractsoort": "Onbepaalde tijd",
+              "cao": "Cao Gemeenten",
+              "functie": "F-0231",
+              "organisatorischeEenheid": "OE-140",
+              "inzetten": [
+                {
+                  "datumBegin": "2021-05-01",
+                  "uren": 28.0,
+                  "bestemming": "Eigen organisatie",
+                  "functie": "F-0231",
+                  "organisatorischeEenheid": "OE-140"
+                }
+              ]
+            }
+          ],
+          "verlofperioden": [
+            {
+              "datumtijdStart": "2026-05-11T00:00:00+02:00",
+              "datumtijdEinde": "2026-08-30T23:59:59+02:00",
+              "verlofsoort": "Zwangerschaps- en bevallingsverlof"
+            }
+          ],
+          "verzuimgevallen": [
+            {
+              "verzuimID": "VZ-88790",
+              "datumtijdStart": "2026-11-02T08:00:00+01:00",
+              "percentageArbeidsongeschiktheid": 100,
+              "verzuimsoort": "Ziekte"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "teller": 2,
+      "gemeentecode": "9998",
+      "aanleverendeOrganisatie": {
+        "naam": "HR-leverancier XYZ B.V.",
+        "kvkNummer": "12345678",
+        "contactpersonen": [
+          {
+            "naam": "Servicedesk koppelingen",
+            "email": "koppelingen@hr-leverancier-xyz.example",
+            "telefoonnummer": "010 555 01 23"
+          }
+        ]
+      },
+      "organisatorischeEenheden": [
+        {
+          "organisatieIdentificatie": "G2-01",
+          "naam": "Gemeente Voorbeelddorp",
+          "type": "Concern"
+        },
+        {
+          "organisatieIdentificatie": "G2-07",
+          "naam": "Griffie",
+          "type": "Griffie",
+          "isDeelVan": "G2-01"
+        }
+      ],
+      "functies": [
+        {
+          "code": "GR-01",
+          "naam": "Griffiemedewerker",
+          "schaal": 8,
+          "leidinggevend": false
+        }
+      ],
+      "werknemers": [
+        {
+          "werknemerID": "0b6c2e9d41a7f358",
+          "geboortejaar": 1966,
+          "geslachtsaanduiding": "Man",
+          "arbeidsovereenkomsten": [
+            {
+              "aanstellingscontractID": "C-000731",
+              "aanstellingssoort": "Reguliere arbeidsovereenkomst",
+              "datumStart": "1998-04-01",
+              "datumEinde": "2026-10-31",
+              "urenPerWeek": 36.0,
+              "schaal": 8,
+              "contractsoort": "Onbepaalde tijd",
+              "cao": "Cao Gemeenten",
+              "redenEinde": "Pensioen",
+              "functie": "GR-01",
+              "organisatorischeEenheid": "G2-07"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,204 @@
+# TaskFile voor de uitwisselspecificatie HR-gegevens Verzuimportaal
+#
+# Deze TaskFile
+# - installeert de Python-tooling (crunch_uml, mkdocs, mike) in een lokale .venv;
+# - leest het Gemeentelijk Gegevensmodel in en leidt daaruit het informatiemodel en het
+#   uitwisselmodel af;
+# - genereert het JSON-schema en de documentatie;
+# - controleert de voorbeeldbestanden en de site;
+# - zet de site lokaal klaar met mike en publiceert haar, alleen op verzoek, naar GitHub Pages.
+#
+# Gebruik:
+# - `task --list` toont alle taken;
+# - `task` (zonder argument) genereert alles en controleert het resultaat, maar publiceert niets;
+# - `task build:serve` toont de site lokaal.
+#
+# Instellingen staan in .env (VERSION, het GGM-bestand, de namen van de plugins).
+# De Python-tooling draait uit .venv (zie requirements-tools.txt), nooit uit een globale installatie.
+#
+# Het JSON-schema en de gegenereerde pagina's staan in git. Met hetzelfde model, dezelfde plugins
+# en dezelfde tooling levert een nieuwe run exact dezelfde bestanden op; een uitgebrachte versie
+# mag na `task` dus geen git-diff tonen.
+#
+# Auteur: Arjen Brienen
+version: '3'
+
+silent: true
+dotenv: ['.env']
+
+env:
+  # crunch_uml importeert de bibliotheek `translators`. Die vraagt bij het laden via internet de
+  # regio op en blijft zonder antwoord op invoer wachten. Deze variabele slaat dat over; de build
+  # vertaalt niets.
+  translators_default_region: "EN"
+  # Vaste hash-seed, zodat de uitvoer van crunch_uml bij elke run dezelfde volgorde heeft.
+  PYTHONHASHSEED: "0"
+
+vars:
+  VERSION_DIR: "./{{.VERSION}}"
+  CRUNCH_UML_DB: "./crunch_uml.db"
+  DOCS: "./docs"
+  DEFS: "./docs/definities"
+  JSON_SCHEMA_FILE: "{{.VERSION_DIR}}/json_schema_Uitwisselmodel.json"
+  # crunch_uml ondersteunt Python lager dan 3.14.
+  PYTHON_VERSION: "3.13"
+  VENV_BIN: "{{.ROOT_DIR}}/.venv/bin"
+  # Deze URL staat hier en niet in .env: met een `env:`-blok in de TaskFile worden variabelen in
+  # .env-waarden niet meer ingevuld, en zou de $id van het schema geen versie bevatten.
+  JSON_SCHEMA_URL: "https://raw.githubusercontent.com/brienen/verzuimdata/main/{{.VERSION}}/json_schema_Uitwisselmodel.json"
+
+tasks:
+  default:
+    desc: "Genereer alles en controleer het resultaat. Publiceert niets."
+    cmds:
+      - task: build:validate
+      - echo "Klaar. Bekijk de site met 'task build:serve'."
+
+  # ==========================================================================
+  # Install: Python-tooling in .venv
+  # ==========================================================================
+  install:
+    run: once
+    desc: "Maak de virtualenv (.venv) en installeer de tooling uit requirements-tools.txt."
+    cmds:
+      - |
+        if command -v uv &> /dev/null; then
+          uv venv --allow-existing --python {{.PYTHON_VERSION}} .venv
+          uv pip install --python .venv/bin/python -r requirements-tools.txt
+        elif command -v python{{.PYTHON_VERSION}} &> /dev/null; then
+          python{{.PYTHON_VERSION}} -m venv .venv
+          .venv/bin/pip install --upgrade pip
+          .venv/bin/pip install -r requirements-tools.txt
+        else
+          echo "Fout: uv (aanbevolen, https://docs.astral.sh/uv/) of python{{.PYTHON_VERSION}} is nodig om de .venv te maken."
+          exit 1
+        fi
+    shell: bash
+    sources:
+      - requirements.txt
+      - requirements-tools.txt
+    generates:
+      - .venv/bin/crunch_uml
+      - .venv/bin/mkdocs
+      - .venv/bin/mike
+
+  # ==========================================================================
+  # Prepare: voorwaarden controleren
+  # ==========================================================================
+  prepare:check:
+    run: once
+    desc: "Controleer de versie in .env, de versiemap en het GGM-bestand."
+    deps: [install]
+    cmds:
+      - |
+        if [[ ! "{{.VERSION}}" =~ ^v[0-9]+\.[0-9]+(\.[0-9]+)*(-draft)?$ ]]; then
+          echo "Fout: VERSION '{{.VERSION}}' is ongeldig. Gebruik v<getal>.<getal>, eventueel met -draft."
+          exit 1
+        fi
+        if [ ! -d "{{.VERSION_DIR}}" ]; then
+          echo "Fout: de versiemap '{{.VERSION_DIR}}' bestaat niet."
+          exit 1
+        fi
+        if [ ! -f "{{.GGM_BESTAND}}" ]; then
+          echo "Fout: het GGM-bestand '{{.GGM_BESTAND}}' bestaat niet. Zie data/LEESMIJ.md."
+          exit 1
+        fi
+    shell: bash
+
+  # ==========================================================================
+  # Import: model inlezen en afleiden
+  # ==========================================================================
+  import:model:
+    # Meerdere taken hangen hiervan af; zonder dit draait de taak voor elk van hen opnieuw, en tegelijk.
+    run: once
+    desc: "Lees het GGM in en leid het informatiemodel en het uitwisselmodel af."
+    deps: [prepare:check]
+    cmds:
+      - echo "GGM inlezen uit '{{.GGM_BESTAND}}'..."
+      - '"{{.VENV_BIN}}/crunch_uml" import -f "{{.GGM_BESTAND}}" -t qea -db_create'
+      - echo "Informatiemodel afleiden..."
+      - '"{{.VENV_BIN}}/crunch_uml" transform -ttp plugin -sch_to {{.IM_SCHEMA}} -rt_pkg "{{.ROOT_IM}}" --plugin_class_name {{.IM_TRANSFORMER_CLASS}} --plugin_file_name {{.IM_TRANSFORMER}}'
+      - echo "Uitwisselmodel afleiden..."
+      - '"{{.VENV_BIN}}/crunch_uml" transform -ttp plugin -sch_from {{.IM_SCHEMA}} -sch_to {{.UM_SCHEMA}} -rt_pkg "{{.ROOT_IM}}" --plugin_class_name {{.UM_TRANSFORMER_CLASS}} --plugin_file_name {{.UM_TRANSFORMER}}'
+    shell: bash
+    sources:
+      - "{{.GGM_BESTAND}}"
+      - "{{.IM_TRANSFORMER}}"
+      - "{{.UM_TRANSFORMER}}"
+      - requirements-tools.txt
+    generates:
+      - "{{.CRUNCH_UML_DB}}"
+
+  # ==========================================================================
+  # Generate: schema en documentatie uit het model
+  # ==========================================================================
+  generate:json-schema:
+    desc: "Genereer het JSON-schema uit het uitwisselmodel."
+    deps: [import:model]
+    cmds:
+      - echo "JSON-schema genereren in '{{.JSON_SCHEMA_FILE}}'..."
+      - '"{{.VENV_BIN}}/crunch_uml" -sch {{.UM_SCHEMA}} export -t json_schema --output_class_id {{.ROOT_CLASS_UM}} -js_url {{.JSON_SCHEMA_URL}} --output_jinja2_template json_schema.j2 --output_jinja2_templatedir ./tools/ -f "{{.VERSION_DIR}}/json_schema.json"'
+      - '"{{.VENV_BIN}}/python" tools/formatteer_json.py "{{.JSON_SCHEMA_FILE}}"'
+    shell: bash
+
+  generate:docs:
+    desc: "Genereer de detailspecificatie, de uitleg en de pagina's met een versienummer."
+    deps: [import:model]
+    cmds:
+      - mkdir -p "{{.DEFS}}"
+      - echo "Detailspecificatie van het informatiemodel genereren..."
+      - '"{{.VENV_BIN}}/crunch_uml" -sch {{.IM_SCHEMA}} export -t jinja2 --output_jinja2_template informatiemodel.j2 --output_jinja2_templatedir ./tools/ -f "{{.DEFS}}/Detail.md"'
+      - echo "Uitleg van het uitwisselmodel genereren..."
+      - '"{{.VENV_BIN}}/crunch_uml" -sch {{.UM_SCHEMA}} export -t jinja2 --output_jinja2_template uitleg.j2 --output_jinja2_templatedir ./tools/ -f "{{.DOCS}}/uitleg.md"'
+      - |
+        # Vul het versienummer in de sjabloonpagina's in: <naam>.md.template -> <naam>.md
+        find "{{.DOCS}}" -type f -name "*.template" | while read -r sjabloon; do
+          sed "s/###VERSION###/{{.VERSION}}/g" "$sjabloon" > "${sjabloon%.template}"
+          echo "Versie ingevuld: ${sjabloon%.template}"
+        done
+    shell: bash
+
+  # ==========================================================================
+  # Build: controleren en bouwen
+  # ==========================================================================
+  build:validate:
+    desc: "Controleer de voorbeeldbestanden tegen het schema en bouw de site in strikte modus."
+    deps: [generate:docs, generate:json-schema]
+    cmds:
+      - '"{{.VENV_BIN}}/python" tools/valideer_voorbeelden.py "{{.JSON_SCHEMA_FILE}}" "{{.VERSION_DIR}}"'
+      - '"{{.VENV_BIN}}/mkdocs" build --strict --site-dir "{{.ROOT_DIR}}/.task/site-controle"'
+      - echo "Voorbeelden en documentatie zijn in orde."
+    shell: bash
+
+  build:serve:
+    desc: "Start de lokale MkDocs-server (genereert niets; draai zo nodig eerst 'task generate:docs')."
+    deps: [install]
+    cmds:
+      - '"{{.VENV_BIN}}/mkdocs" serve'
+    shell: bash
+
+  # ==========================================================================
+  # Publish: alleen op verzoek
+  # ==========================================================================
+  publish:local:
+    desc: "Zet de versie lokaal klaar met mike (branch gh-pages); een -draft blijft los van 'latest'."
+    deps: [build:validate]
+    cmds:
+      - |
+        if [[ "{{.VERSION}}" == *-draft ]]; then
+          "{{.VENV_BIN}}/mike" deploy "{{.VERSION}}"
+        else
+          "{{.VENV_BIN}}/mike" deploy "{{.VERSION}}" latest --update-aliases
+          "{{.VENV_BIN}}/mike" set-default latest
+        fi
+      - echo "Klaar. Bekijk het resultaat met '.venv/bin/mike serve'."
+    shell: bash
+
+  publish:github:
+    desc: "Publiceer de documentatie naar GitHub Pages."
+    deps: [publish:local]
+    prompt:
+      - Dit publiceert de documentatie naar de openbare GitHub Pages. Doorgaan?
+      - Weet je het zeker?
+    cmds:
+      - git push origin gh-pages

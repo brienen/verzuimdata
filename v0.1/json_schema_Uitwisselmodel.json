@@ -1,0 +1,1049 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/brienen/verzuimdata/main/v0.1/json_schema_Uitwisselmodel.json",
+  "type": "object",
+  "title": "Uitwisselmodel",
+  "description": "Eén bericht met HR-gegevens van één of meer gemeenten over één verslagperiode.",
+  "properties": {
+    "codeGegevensleverancier": {
+      "description": "De naam van de gegevensleverancier (softwareleverancier of hostingpartij) en de versie van het pakket.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "versieSpecificatie": {
+      "description": "De versie van de uitwisselspecificatie waaraan het bericht voldoet, bijvoorbeeld v0.1.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 20
+    },
+    "startdatumLevering": {
+      "description": "De eerste dag van de verslagperiode.",
+      "$ref": "#/$defs/datum"
+    },
+    "einddatumLevering": {
+      "description": "De laatste dag van de verslagperiode.",
+      "$ref": "#/$defs/datum"
+    },
+    "aanleverdatumEnTijd": {
+      "description": "Het moment waarop het bericht is samengesteld.",
+      "$ref": "#/$defs/datum-tijd"
+    },
+    "leveringen": {
+      "description": "De leveringen in het bericht: één per gemeente.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "title": "Levering",
+        "description": "De HR-gegevens van precies één gemeente over de verslagperiode. Een leverancier die voor meerdere gemeenten levert, neemt per gemeente één levering op.",
+        "properties": {
+          "teller": {
+            "description": "Het volgnummer van de levering binnen het bericht, te beginnen bij 1.",
+            "type": "integer",
+            "minimum": 1
+          },
+          "gemeentecode": {
+            "description": "De CBS-gemeentecode van de gemeente waarover de gegevens gaan, vier cijfers met voorloopnullen.",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4,
+            "pattern": "^[0-9]{4}$"
+          },
+          "aanleverendeOrganisatie": {
+            "type": "object",
+            "title": "AanleverendeOrganisatie",
+            "description": "De organisatie die de gegevens van de levering aanlevert. Levert de gemeente zelf, dan is dit de gemeente; anders de leverancier die namens de gemeente levert.",
+            "properties": {
+              "naam": {
+                "description": "De naam van de aanleverende organisatie.",
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "kvkNummer": {
+                "description": "Het KvK-nummer van de aanleverende organisatie, acht cijfers. Verplicht als een andere organisatie dan de gemeente aanlevert.",
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 8,
+                "pattern": "^[0-9]{8}$"
+              },
+              "contactpersonen": {
+                "description": "De contactpersonen voor de levering.",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "title": "Contactpersoon",
+                  "description": "Een persoon bij de aanleverende organisatie die vragen over de levering kan beantwoorden.",
+                  "properties": {
+                    "naam": {
+                      "description": "De naam van de contactpersoon.",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "functietitel": {
+                      "description": "De functie van de contactpersoon.",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100
+                    },
+                    "email": {
+                      "description": "Het e-mailadres van de contactpersoon.",
+                      "$ref": "#/$defs/email"
+                    },
+                    "telefoonnummer": {
+                      "description": "Het telefoonnummer van de contactpersoon.",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 20
+                    }
+                  },
+                  "required": [
+                    "naam"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "naam"
+            ],
+            "additionalProperties": false
+          },
+          "organisatorischeEenheden": {
+            "description": "De organisatorische eenheden van de gemeente die in de verslagperiode bestaan.",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "title": "OrganisatorischeEenheidHR",
+              "description": "Een organisatorische eenheid zoals vastgelegd in de personeelsadministratie. De plaats in de organisatie volgt uit het veld isDeelVan.",
+              "properties": {
+                "organisatieIdentificatie": {
+                  "description": "Een korte identificatie van de organisatorische eenheid.",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 24
+                },
+                "naam": {
+                  "description": "De naam van de eenheid in de personeelsadministratie.",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 80
+                },
+                "type": {
+                  "description": "Het niveau van de eenheid in de indeling van de organisatie.",
+                  "$ref": "#/$defs/OrganisatorischeEenheidsoort"
+                },
+                "isDeelVan": {
+                  "description": "De organisatorische eenheid waarvan deze eenheid deel uitmaakt. Verwijst met de organisatieIdentificatie naar een organisatorische eenheid in dezelfde levering. Leeg bij de hoogste eenheid, de organisatie als geheel.",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 24
+                },
+                "datumOntstaan": {
+                  "description": "De datum waarop de organisatorische eenheid is ontstaan.",
+                  "$ref": "#/$defs/datum"
+                },
+                "datumOpheffing": {
+                  "description": "De datum waarop de organisatorische eenheid is opgeheven.",
+                  "$ref": "#/$defs/datum"
+                }
+              },
+              "required": [
+                "organisatieIdentificatie",
+                "naam",
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "minItems": 1
+          },
+          "functies": {
+            "description": "De functies waarnaar in de levering wordt verwezen.",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "title": "Functie",
+              "description": "Het samenstel van taken en werkzaamheden dat aan een werknemer kan worden opgedragen.",
+              "properties": {
+                "code": {
+                  "description": "De code waarmee de functie in de organisatie wordt aangeduid. Sleutel voor de vertaaltabel naar een landelijke indeling.",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 50
+                },
+                "naam": {
+                  "description": "De naam van de functie.",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 80
+                },
+                "schaal": {
+                  "description": "De salarisschaal waarin de functie is gewaardeerd.",
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "leidinggevend": {
+                  "description": "Aanduiding dat aan de functie leidinggevende taken en personele verantwoordelijkheid zijn verbonden. Projectleiders, meewerkend voorlieden en coördinatoren tellen niet als leidinggevend.",
+                  "type": "boolean"
+                },
+                "werkomgeving": {
+                  "description": "De omgeving waarin het werk van de functie zich hoofdzakelijk afspeelt.",
+                  "$ref": "#/$defs/Werkomgeving"
+                },
+                "normProfiel": {
+                  "type": "object",
+                  "title": "NormProfiel",
+                  "description": "Een generieke functie uit een landelijk functiewaarderingssysteem, waarop functies van de organisatie zijn gebaseerd. Voor gemeenten het systeem HR21.",
+                  "properties": {
+                    "code": {
+                      "description": "De code van het normprofiel in het functiewaarderingssysteem.",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 10
+                    },
+                    "omschrijving": {
+                      "description": "De naam of omschrijving van het normprofiel.",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100
+                    },
+                    "schaal": {
+                      "description": "De salarisschaal die bij het normprofiel hoort.",
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "functiehuis": {
+                      "type": "object",
+                      "title": "Functiehuis",
+                      "description": "Model waarin functies van een organisatie worden beschreven.",
+                      "properties": {
+                        "naam": {
+                          "description": "De naam van het functiehuis, bijvoorbeeld HR21.",
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 80
+                        }
+                      },
+                      "required": [
+                        "naam"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "omschrijving",
+                    "schaal",
+                    "functiehuis"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "code",
+                "naam",
+                "schaal",
+                "leidinggevend"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "formatieplaatsen": {
+            "description": "De formatieplaatsen die in de verslagperiode bestaan, ook de onbezette.",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "title": "Formatieplaats",
+              "description": "Een in het formatieplan vastgestelde arbeidsplaats bij een organisatorische eenheid. De formatie is de toegestane omvang, niet de werkelijke bezetting. Een formatieplaats bestaat ook als zij onbezet is.",
+              "properties": {
+                "formatieplaatsID": {
+                  "description": "Een sleutel die de formatieplaats binnen de levering aanduidt.",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "urenPerWeek": {
+                  "description": "De omvang van de formatieplaats in uren per week.",
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 168
+                },
+                "datumBegin": {
+                  "description": "De eerste dag waarop de formatieplaats geldig is. Grondslag voor de formatie op een peildatum.",
+                  "$ref": "#/$defs/datum"
+                },
+                "datumEinde": {
+                  "description": "De laatste dag waarop de formatieplaats geldig is. Leeg zolang de formatieplaats bestaat.",
+                  "$ref": "#/$defs/datum"
+                },
+                "functie": {
+                  "description": "De functie waarvoor de formatieplaats is bestemd. Verwijst met de code naar een functie in dezelfde levering.",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 50
+                },
+                "organisatorischeEenheid": {
+                  "description": "De organisatorische eenheid waartoe de formatieplaats behoort. Verwijst met de organisatieIdentificatie naar een organisatorische eenheid in dezelfde levering.",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 24
+                }
+              },
+              "required": [
+                "formatieplaatsID",
+                "urenPerWeek",
+                "datumBegin",
+                "functie",
+                "organisatorischeEenheid"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "werknemers": {
+            "description": "De werknemers met ten minste één aanstellingscontract dat de verslagperiode raakt.",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "title": "Werknemer",
+              "description": "Een persoon die op grond van een aanstellingscontract werkzaamheden verricht voor de organisatie. Omvat eigen personeel, ingehuurde krachten, stagiairs en mensen op een werkervaringsplaats. Een werknemer wordt aangeduid met een sleutel zonder betekenis; naam, burgerservicenummer, geboortedatum en adres worden niet uitgewisseld.",
+              "properties": {
+                "werknemerID": {
+                  "description": "Een sleutel zonder betekenis die de werknemer binnen de gemeente aanduidt. De sleutel is in elke levering dezelfde, zodat gegevens over meerdere perioden bij elkaar horen. Het personeelsnummer, het burgerservicenummer of een deel van de naam mogen er niet in voorkomen of uit af te leiden zijn.",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "geboortejaar": {
+                  "description": "Het jaar waarin de werknemer is geboren. Het geboortejaar vervangt de geboortedatum; het is genoeg voor de leeftijdsopbouw.",
+                  "type": "integer",
+                  "minimum": 1900,
+                  "maximum": 2100
+                },
+                "geslachtsaanduiding": {
+                  "description": "Een aanduiding die aangeeft of de persoon een man of een vrouw is, of dat het geslacht onbekend is.",
+                  "$ref": "#/$defs/Geslachtsaanduiding"
+                },
+                "arbeidsovereenkomsten": {
+                  "description": "De aanstellingscontracten van de werknemer van het subtype Arbeidsovereenkomst.",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "title": "Arbeidsovereenkomst",
+                    "description": "De overeenkomst waarbij de werknemer zich verbindt om in dienst van de organisatie, tegen loon, gedurende zekere tijd arbeid te verrichten. Voor eigen personeel. Alleen arbeidsovereenkomsten tellen voor de bezetting; welke precies, volgt uit de cao en de aanstellingssoort. Een verlenging of een nieuwe overeenkomst is een nieuw voorkomen.",
+                    "properties": {
+                      "aanstellingscontractID": {
+                        "description": "Een sleutel die het aanstellingscontract binnen de levering aanduidt. De sleutel is in elke levering dezelfde.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 64
+                      },
+                      "aanstellingssoort": {
+                        "description": "De soort aanstelling. Elke waarde hoort bij precies een subtype. Bepaalt samen met de cao of de aanstelling tot de bezetting telt, en onderscheidt de vormen van inhuur.",
+                        "$ref": "#/$defs/AanstellingssoortArbeidsovereenkomst"
+                      },
+                      "datumStart": {
+                        "description": "De eerste dag waarop het contract geldt.",
+                        "$ref": "#/$defs/datum"
+                      },
+                      "datumEinde": {
+                        "description": "De laatste dag waarop het contract geldt. Leeg zolang het contract loopt en geen einddatum is overeengekomen.",
+                        "$ref": "#/$defs/datum"
+                      },
+                      "urenPerWeek": {
+                        "description": "Het aantal uren per week dat volgens het contract wordt gewerkt. Grondslag voor de bezetting in fte en voor de weging van verzuim naar deeltijd.",
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 168
+                      },
+                      "schaal": {
+                        "description": "De salarisschaal waarin de werknemer is ingedeeld. Het waardebereik volgt uit de cao; voor gemeenten 1 tot en met 20.",
+                        "type": "integer",
+                        "minimum": 1
+                      },
+                      "contractsoort": {
+                        "description": "Aanduiding of de overeenkomst voor bepaalde of voor onbepaalde tijd is aangegaan. Grondslag voor tijdelijke dienst en voor vaste en flexibele bezetting.",
+                        "$ref": "#/$defs/Contractsoort"
+                      },
+                      "cao": {
+                        "description": "De collectieve arbeidsovereenkomst die op de overeenkomst van toepassing is.",
+                        "$ref": "#/$defs/Cao"
+                      },
+                      "banenafspraak": {
+                        "description": "Aanduiding dat de overeenkomst meetelt voor de banenafspraak voor mensen met een arbeidsbeperking. Grondslag voor medewerkers met afstand tot de arbeidsmarkt.",
+                        "type": "boolean"
+                      },
+                      "redenEinde": {
+                        "description": "De reden waarom de overeenkomst is geëindigd. Leeg zolang de overeenkomst loopt. Grondslag voor vrijwillige en onvrijwillige uitstroom.",
+                        "$ref": "#/$defs/RedenEindeArbeidsovereenkomst"
+                      },
+                      "functie": {
+                        "description": "De functie die in het contract is overeengekomen. Verwijst met de code naar een functie in dezelfde levering.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 50
+                      },
+                      "organisatorischeEenheid": {
+                        "description": "De organisatorische eenheid waarbij de werknemer op grond van het contract is geplaatst. Verwijst met de organisatieIdentificatie naar een organisatorische eenheid in dezelfde levering. Werkt iemand voor meer eenheden, dan volgt de verdeling uit de inzet.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 24
+                      },
+                      "formatieplaats": {
+                        "description": "De formatieplaats waaraan het contract is toegewezen. Verwijst met het formatieplaatsID naar een formatieplaats in dezelfde levering.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 64
+                      },
+                      "inzetten": {
+                        "description": "De inzet die op grond van het contract wordt verricht.",
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "title": "Inzet",
+                          "description": "De inzet van een werknemer voor een functie bij een organisatorische eenheid in een bepaalde periode, op grond van een aanstellingscontract. Een contract kan meer inzetten hebben, gelijktijdig of na elkaar. Opeenvolgende inzetten vormen de functie- en afdelingshistorie waaruit doorstroom en verblijfsduur in een functie volgen.",
+                          "properties": {
+                            "datumBegin": {
+                              "description": "De eerste dag van de inzet.",
+                              "$ref": "#/$defs/datum"
+                            },
+                            "datumEinde": {
+                              "description": "De laatste dag van de inzet. Leeg zolang de inzet loopt.",
+                              "$ref": "#/$defs/datum"
+                            },
+                            "uren": {
+                              "description": "Het aantal uren per week van de inzet.",
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 168
+                            },
+                            "percentage": {
+                              "description": "Het deel van de uren van de inzet dat daadwerkelijk wordt uitgevoerd, als percentage.",
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 100
+                            },
+                            "bestemming": {
+                              "description": "Aanduiding of de inzet voor de eigen organisatie is of voor derden. Grondslag voor de inzet voor derden.",
+                              "$ref": "#/$defs/BestemmingInzet"
+                            },
+                            "schaal": {
+                              "description": "De salarisschaal waarin de werknemer voor deze inzet is ingedeeld. Alleen gevuld als de schaal afwijkt van die van de functie, bijvoorbeeld bij een aanloopschaal.",
+                              "type": "integer",
+                              "minimum": 1
+                            },
+                            "functie": {
+                              "description": "De functie waarvoor de werknemer wordt ingezet. Verwijst met de code naar een functie in dezelfde levering.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 50
+                            },
+                            "organisatorischeEenheid": {
+                              "description": "De organisatorische eenheid waarbij de werknemer wordt ingezet. Verwijst met de organisatieIdentificatie naar een organisatorische eenheid in dezelfde levering.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 24
+                            }
+                          },
+                          "required": [
+                            "datumBegin",
+                            "uren",
+                            "bestemming",
+                            "functie",
+                            "organisatorischeEenheid"
+                          ],
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "required": [
+                      "aanstellingscontractID",
+                      "aanstellingssoort",
+                      "datumStart",
+                      "urenPerWeek",
+                      "schaal",
+                      "contractsoort",
+                      "cao",
+                      "organisatorischeEenheid"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "inhuurovereenkomsten": {
+                  "description": "De aanstellingscontracten van de werknemer van het subtype Inhuurovereenkomst.",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "title": "Inhuurovereenkomst",
+                    "description": "Een overeenkomst op grond waarvan een externe kracht werkzaamheden verricht voor de organisatie, zonder bij haar in dienst te zijn. Voor externe krachten: uitzendwerk, detachering vanuit een andere organisatie, payrolling en opdrachten aan zelfstandigen; de aanstellingssoort zegt welke vorm het is. Telt niet voor de bezetting, wel voor de externe inhuur en de flexibele bezetting.",
+                    "properties": {
+                      "aanstellingscontractID": {
+                        "description": "Een sleutel die het aanstellingscontract binnen de levering aanduidt. De sleutel is in elke levering dezelfde.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 64
+                      },
+                      "aanstellingssoort": {
+                        "description": "De soort aanstelling. Elke waarde hoort bij precies een subtype. Bepaalt samen met de cao of de aanstelling tot de bezetting telt, en onderscheidt de vormen van inhuur.",
+                        "$ref": "#/$defs/AanstellingssoortInhuurovereenkomst"
+                      },
+                      "datumStart": {
+                        "description": "De eerste dag waarop het contract geldt.",
+                        "$ref": "#/$defs/datum"
+                      },
+                      "datumEinde": {
+                        "description": "De laatste dag waarop het contract geldt. Leeg zolang het contract loopt en geen einddatum is overeengekomen.",
+                        "$ref": "#/$defs/datum"
+                      },
+                      "urenPerWeek": {
+                        "description": "Het aantal uren per week dat volgens het contract wordt gewerkt. Grondslag voor de bezetting in fte en voor de weging van verzuim naar deeltijd.",
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 168
+                      },
+                      "functie": {
+                        "description": "De functie die in het contract is overeengekomen. Verwijst met de code naar een functie in dezelfde levering.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 50
+                      },
+                      "organisatorischeEenheid": {
+                        "description": "De organisatorische eenheid waarbij de werknemer op grond van het contract is geplaatst. Verwijst met de organisatieIdentificatie naar een organisatorische eenheid in dezelfde levering. Werkt iemand voor meer eenheden, dan volgt de verdeling uit de inzet.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 24
+                      },
+                      "formatieplaats": {
+                        "description": "De formatieplaats waaraan het contract is toegewezen. Verwijst met het formatieplaatsID naar een formatieplaats in dezelfde levering.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 64
+                      },
+                      "inzetten": {
+                        "description": "De inzet die op grond van het contract wordt verricht.",
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "title": "Inzet",
+                          "description": "De inzet van een werknemer voor een functie bij een organisatorische eenheid in een bepaalde periode, op grond van een aanstellingscontract. Een contract kan meer inzetten hebben, gelijktijdig of na elkaar. Opeenvolgende inzetten vormen de functie- en afdelingshistorie waaruit doorstroom en verblijfsduur in een functie volgen.",
+                          "properties": {
+                            "datumBegin": {
+                              "description": "De eerste dag van de inzet.",
+                              "$ref": "#/$defs/datum"
+                            },
+                            "datumEinde": {
+                              "description": "De laatste dag van de inzet. Leeg zolang de inzet loopt.",
+                              "$ref": "#/$defs/datum"
+                            },
+                            "uren": {
+                              "description": "Het aantal uren per week van de inzet.",
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 168
+                            },
+                            "percentage": {
+                              "description": "Het deel van de uren van de inzet dat daadwerkelijk wordt uitgevoerd, als percentage.",
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 100
+                            },
+                            "bestemming": {
+                              "description": "Aanduiding of de inzet voor de eigen organisatie is of voor derden. Grondslag voor de inzet voor derden.",
+                              "$ref": "#/$defs/BestemmingInzet"
+                            },
+                            "schaal": {
+                              "description": "De salarisschaal waarin de werknemer voor deze inzet is ingedeeld. Alleen gevuld als de schaal afwijkt van die van de functie, bijvoorbeeld bij een aanloopschaal.",
+                              "type": "integer",
+                              "minimum": 1
+                            },
+                            "functie": {
+                              "description": "De functie waarvoor de werknemer wordt ingezet. Verwijst met de code naar een functie in dezelfde levering.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 50
+                            },
+                            "organisatorischeEenheid": {
+                              "description": "De organisatorische eenheid waarbij de werknemer wordt ingezet. Verwijst met de organisatieIdentificatie naar een organisatorische eenheid in dezelfde levering.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 24
+                            }
+                          },
+                          "required": [
+                            "datumBegin",
+                            "uren",
+                            "bestemming",
+                            "functie",
+                            "organisatorischeEenheid"
+                          ],
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "required": [
+                      "aanstellingscontractID",
+                      "aanstellingssoort",
+                      "datumStart",
+                      "urenPerWeek",
+                      "organisatorischeEenheid"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "overigeAanstellingen": {
+                  "description": "De aanstellingscontracten van de werknemer van het subtype OverigeAanstelling.",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "title": "OverigeAanstelling",
+                    "description": "Een aanstellingscontract dat geen arbeidsovereenkomst en geen inhuurovereenkomst is. Voor wie in de organisatie werkt zonder arbeidsovereenkomst en zonder te zijn ingehuurd: stagiairs, mensen op een werkervaringsplaats en overige vormen, zoals vrijwilligers. Telt niet voor de bezetting en niet voor de externe inhuur.",
+                    "properties": {
+                      "aanstellingscontractID": {
+                        "description": "Een sleutel die het aanstellingscontract binnen de levering aanduidt. De sleutel is in elke levering dezelfde.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 64
+                      },
+                      "aanstellingssoort": {
+                        "description": "De soort aanstelling. Elke waarde hoort bij precies een subtype. Bepaalt samen met de cao of de aanstelling tot de bezetting telt, en onderscheidt de vormen van inhuur.",
+                        "$ref": "#/$defs/AanstellingssoortOverigeAanstelling"
+                      },
+                      "datumStart": {
+                        "description": "De eerste dag waarop het contract geldt.",
+                        "$ref": "#/$defs/datum"
+                      },
+                      "datumEinde": {
+                        "description": "De laatste dag waarop het contract geldt. Leeg zolang het contract loopt en geen einddatum is overeengekomen.",
+                        "$ref": "#/$defs/datum"
+                      },
+                      "urenPerWeek": {
+                        "description": "Het aantal uren per week dat volgens het contract wordt gewerkt. Grondslag voor de bezetting in fte en voor de weging van verzuim naar deeltijd.",
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 168
+                      },
+                      "functie": {
+                        "description": "De functie die in het contract is overeengekomen. Verwijst met de code naar een functie in dezelfde levering.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 50
+                      },
+                      "organisatorischeEenheid": {
+                        "description": "De organisatorische eenheid waarbij de werknemer op grond van het contract is geplaatst. Verwijst met de organisatieIdentificatie naar een organisatorische eenheid in dezelfde levering. Werkt iemand voor meer eenheden, dan volgt de verdeling uit de inzet.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 24
+                      },
+                      "formatieplaats": {
+                        "description": "De formatieplaats waaraan het contract is toegewezen. Verwijst met het formatieplaatsID naar een formatieplaats in dezelfde levering.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 64
+                      },
+                      "inzetten": {
+                        "description": "De inzet die op grond van het contract wordt verricht.",
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "title": "Inzet",
+                          "description": "De inzet van een werknemer voor een functie bij een organisatorische eenheid in een bepaalde periode, op grond van een aanstellingscontract. Een contract kan meer inzetten hebben, gelijktijdig of na elkaar. Opeenvolgende inzetten vormen de functie- en afdelingshistorie waaruit doorstroom en verblijfsduur in een functie volgen.",
+                          "properties": {
+                            "datumBegin": {
+                              "description": "De eerste dag van de inzet.",
+                              "$ref": "#/$defs/datum"
+                            },
+                            "datumEinde": {
+                              "description": "De laatste dag van de inzet. Leeg zolang de inzet loopt.",
+                              "$ref": "#/$defs/datum"
+                            },
+                            "uren": {
+                              "description": "Het aantal uren per week van de inzet.",
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 168
+                            },
+                            "percentage": {
+                              "description": "Het deel van de uren van de inzet dat daadwerkelijk wordt uitgevoerd, als percentage.",
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 100
+                            },
+                            "bestemming": {
+                              "description": "Aanduiding of de inzet voor de eigen organisatie is of voor derden. Grondslag voor de inzet voor derden.",
+                              "$ref": "#/$defs/BestemmingInzet"
+                            },
+                            "schaal": {
+                              "description": "De salarisschaal waarin de werknemer voor deze inzet is ingedeeld. Alleen gevuld als de schaal afwijkt van die van de functie, bijvoorbeeld bij een aanloopschaal.",
+                              "type": "integer",
+                              "minimum": 1
+                            },
+                            "functie": {
+                              "description": "De functie waarvoor de werknemer wordt ingezet. Verwijst met de code naar een functie in dezelfde levering.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 50
+                            },
+                            "organisatorischeEenheid": {
+                              "description": "De organisatorische eenheid waarbij de werknemer wordt ingezet. Verwijst met de organisatieIdentificatie naar een organisatorische eenheid in dezelfde levering.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 24
+                            }
+                          },
+                          "required": [
+                            "datumBegin",
+                            "uren",
+                            "bestemming",
+                            "functie",
+                            "organisatorischeEenheid"
+                          ],
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "required": [
+                      "aanstellingscontractID",
+                      "aanstellingssoort",
+                      "datumStart",
+                      "urenPerWeek",
+                      "organisatorischeEenheid"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "rollen": {
+                  "description": "De rol die de werknemer vervult.",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "title": "Rol",
+                    "description": "Een taak of bevoegdheid die een werknemer in een bepaalde periode vervult binnen een organisatorische eenheid, naast of als onderdeel van zijn functie. De rol legt vast wie in welke periode leiding geeft aan welke eenheid.",
+                    "properties": {
+                      "rolsoort": {
+                        "description": "De soort rol. Maakt leidinggevenden eenduidig herkenbaar.",
+                        "$ref": "#/$defs/Rolsoort"
+                      },
+                      "omschrijving": {
+                        "description": "Een vrije omschrijving van de rol.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 50
+                      },
+                      "datumBegin": {
+                        "description": "De eerste dag waarop de werknemer de rol vervult.",
+                        "$ref": "#/$defs/datum"
+                      },
+                      "datumEinde": {
+                        "description": "De laatste dag waarop de werknemer de rol vervult. Leeg zolang de rol wordt vervuld.",
+                        "$ref": "#/$defs/datum"
+                      },
+                      "organisatorischeEenheid": {
+                        "description": "De organisatorische eenheid waarbinnen de werknemer de rol vervult. Verwijst met de organisatieIdentificatie naar een organisatorische eenheid in dezelfde levering.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 24
+                      }
+                    },
+                    "required": [
+                      "rolsoort",
+                      "datumBegin"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "verzuimgevallen": {
+                  "description": "Het verzuim van de werknemer.",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "title": "Verzuim",
+                    "description": "Een aaneengesloten periode waarin een werknemer de overeengekomen arbeid geheel of gedeeltelijk niet verricht, anders dan door verlof. Een verzuimgeval loopt van de eerste verzuimdag tot het herstel. Zwangerschaps- en bevallingsverlof is verlof en geen verzuim; ziekte als gevolg van zwangerschap is wel verzuim. De medische oorzaak wordt niet vastgelegd.",
+                    "properties": {
+                      "verzuimID": {
+                        "description": "Een sleutel die het verzuimgeval binnen de levering aanduidt. De sleutel is in elke levering dezelfde, zodat lopend verzuim over perioden heen te volgen is.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 64
+                      },
+                      "datumtijdStart": {
+                        "description": "Het moment waarop het verzuim begint.",
+                        "$ref": "#/$defs/datum-tijd"
+                      },
+                      "datumtijdEinde": {
+                        "description": "Het moment waarop het verzuim eindigt. Leeg zolang het verzuim loopt.",
+                        "$ref": "#/$defs/datum-tijd"
+                      },
+                      "percentageArbeidsongeschiktheid": {
+                        "description": "Het deel van de overeengekomen arbeidsduur waarvoor de werknemer verzuimt, als percentage. 100 bij volledig verzuim. Een wijziging is historie van dit kenmerk en geen nieuw verzuimgeval.",
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 100
+                      },
+                      "verzuimsoort": {
+                        "description": "De soort verzuim.",
+                        "$ref": "#/$defs/Verzuimsoort"
+                      },
+                      "redenEinde": {
+                        "description": "De reden waarom het verzuim is geëindigd. Leeg zolang het verzuim loopt. Grondslag voor het aandeel hersteld.",
+                        "$ref": "#/$defs/RedenEindeVerzuim"
+                      },
+                      "verloop": {
+                        "description": "Het verloop van het percentage arbeidsongeschiktheid binnen het verzuimgeval. Alleen nodig als het percentage tijdens het verzuim is gewijzigd.",
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "title": "Arbeidsongeschiktheidsverloop",
+                          "description": "Een periode binnen een verzuimgeval waarin het percentage arbeidsongeschiktheid gelijk blijft. Bestaat alleen in de uitwisseling. In het GGM is het percentage een kenmerk van Verzuim met historie; dit objecttype levert die historie. Een periode loopt tot de begindatum van de volgende periode, of tot het einde van het verzuim.",
+                          "properties": {
+                            "datumBegin": {
+                              "description": "De eerste dag waarop het percentage geldt.",
+                              "$ref": "#/$defs/datum"
+                            },
+                            "percentageArbeidsongeschiktheid": {
+                              "description": "Het deel van de overeengekomen arbeidsduur waarvoor de werknemer in deze periode verzuimt, als percentage.",
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 100
+                            }
+                          },
+                          "required": [
+                            "datumBegin",
+                            "percentageArbeidsongeschiktheid"
+                          ],
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "required": [
+                      "verzuimID",
+                      "datumtijdStart",
+                      "percentageArbeidsongeschiktheid",
+                      "verzuimsoort"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "verlofperioden": {
+                  "description": "Het verlof van de werknemer.",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "title": "Verlof",
+                    "description": "Een periode waarin een werknemer met toestemming van de werkgever, of op grond van de wet of de cao, de overeengekomen arbeid niet verricht.",
+                    "properties": {
+                      "datumtijdStart": {
+                        "description": "Het moment waarop het verlof begint.",
+                        "$ref": "#/$defs/datum-tijd"
+                      },
+                      "datumtijdEinde": {
+                        "description": "Het moment waarop het verlof eindigt.",
+                        "$ref": "#/$defs/datum-tijd"
+                      },
+                      "verlofsoort": {
+                        "description": "De soort verlof.",
+                        "$ref": "#/$defs/Verlofsoort"
+                      }
+                    },
+                    "required": [
+                      "datumtijdStart",
+                      "datumtijdEinde",
+                      "verlofsoort"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "werknemerID",
+                "geboortejaar",
+                "geslachtsaanduiding"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "teller",
+          "gemeentecode",
+          "aanleverendeOrganisatie",
+          "organisatorischeEenheden"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "codeGegevensleverancier",
+    "versieSpecificatie",
+    "startdatumLevering",
+    "einddatumLevering",
+    "aanleverdatumEnTijd",
+    "leveringen"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "datum": {
+      "type": "string",
+      "format": "date",
+      "description": "Een datum volgens ISO 8601: JJJJ-MM-DD."
+    },
+    "datum-tijd": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Een datum en tijd volgens ISO 8601, met tijdzone: JJJJ-MM-DDTUU:MM:SSZ."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Een e-mailadres."
+    },
+    "AanstellingssoortArbeidsovereenkomst": {
+      "type": "string",
+      "description": "De soort aanstelling op grond waarvan een werknemer voor de organisatie werkt. Deze lijst bevat de soorten die bij Arbeidsovereenkomst horen.",
+      "enum": [
+        "Reguliere arbeidsovereenkomst",
+        "Oproepovereenkomst",
+        "Leerarbeidsovereenkomst"
+      ]
+    },
+    "AanstellingssoortInhuurovereenkomst": {
+      "type": "string",
+      "description": "De soort aanstelling op grond waarvan een werknemer voor de organisatie werkt. Deze lijst bevat de soorten die bij Inhuurovereenkomst horen.",
+      "enum": [
+        "Uitzendovereenkomst",
+        "Detachering",
+        "Payrollovereenkomst",
+        "Opdracht aan zelfstandige"
+      ]
+    },
+    "AanstellingssoortOverigeAanstelling": {
+      "type": "string",
+      "description": "De soort aanstelling op grond waarvan een werknemer voor de organisatie werkt. Deze lijst bevat de soorten die bij OverigeAanstelling horen.",
+      "enum": [
+        "Stageovereenkomst",
+        "Werkervaringsplaats",
+        "Overig"
+      ]
+    },
+    "BestemmingInzet": {
+      "type": "string",
+      "description": "De organisatie waarvoor een inzet wordt verricht.",
+      "enum": [
+        "Eigen organisatie",
+        "Derden"
+      ]
+    },
+    "Cao": {
+      "type": "string",
+      "description": "De collectieve arbeidsovereenkomst die op een arbeidsovereenkomst van toepassing is.",
+      "enum": [
+        "Cao Gemeenten",
+        "Cao SGO",
+        "Cao Aan de Slag",
+        "Cao Sociale Werkvoorziening",
+        "Overig"
+      ]
+    },
+    "Contractsoort": {
+      "type": "string",
+      "description": "De duur waarvoor een arbeidsovereenkomst is aangegaan.",
+      "enum": [
+        "Bepaalde tijd",
+        "Onbepaalde tijd"
+      ]
+    },
+    "Geslachtsaanduiding": {
+      "type": "string",
+      "description": "Een aanduiding die aangeeft of de persoon een man of een vrouw is, of dat het geslacht onbekend is. De waarden volgen de geslachtsaanduiding van Medewerker in het GGM.",
+      "enum": [
+        "Vrouw",
+        "Man",
+        "Onbekend"
+      ]
+    },
+    "OrganisatorischeEenheidsoort": {
+      "type": "string",
+      "description": "Het niveau van een organisatorische eenheid in de indeling van de organisatie.",
+      "enum": [
+        "Concern",
+        "Directie",
+        "Afdeling",
+        "Team",
+        "Griffie",
+        "Overig"
+      ]
+    },
+    "RedenEindeArbeidsovereenkomst": {
+      "type": "string",
+      "description": "De reden waarom een arbeidsovereenkomst is geëindigd.",
+      "enum": [
+        "Arbeidsongeschiktheid",
+        "Einde tijdelijk contract",
+        "Ontslag door werkgever",
+        "Overlijden",
+        "Pensioen",
+        "Reorganisatie",
+        "Vrijwillig vertrek",
+        "Overig"
+      ]
+    },
+    "RedenEindeVerzuim": {
+      "type": "string",
+      "description": "De reden waarom een verzuim is geëindigd.",
+      "enum": [
+        "Einde aanstelling",
+        "Einde wachttijd",
+        "Hersteld",
+        "Overlijden",
+        "Overig"
+      ]
+    },
+    "Rolsoort": {
+      "type": "string",
+      "description": "De soort rol die een werknemer vervult.",
+      "enum": [
+        "Leidinggevende",
+        "Coördinerend",
+        "Overig"
+      ]
+    },
+    "Verlofsoort": {
+      "type": "string",
+      "description": "De soort verlof, naar de Wet arbeid en zorg en de cao.",
+      "enum": [
+        "Adoptie- en pleegzorgverlof",
+        "Calamiteitenverlof",
+        "Geboorteverlof",
+        "Kortdurend zorgverlof",
+        "Langdurend zorgverlof",
+        "Onbetaald verlof",
+        "Ouderschapsverlof betaald",
+        "Ouderschapsverlof onbetaald",
+        "Vakantie",
+        "Zwangerschaps- en bevallingsverlof",
+        "Overig"
+      ]
+    },
+    "Verzuimsoort": {
+      "type": "string",
+      "description": "De soort verzuim, voor zover een werkgever die mag vastleggen. De waarden volgen wat een werkgever volgens de beleidsregels van de Autoriteit Persoonsgegevens over een ziekmelding mag vastleggen. Daarom is er geen waarde voor de medische oorzaak en geen onderscheid naar de afzonderlijke vangnetbepalingen. Alle waarden tellen als verzuim. Bij samenloop geldt de meest specifieke waarde.",
+      "enum": [
+        "Ziekte",
+        "Ziekte onder vangnet Ziektewet",
+        "Arbeidsongeval",
+        "Ongeval met aansprakelijke derde",
+        "Overig"
+      ]
+    },
+    "Werkomgeving": {
+      "type": "string",
+      "description": "De omgeving waarin het werk van een functie zich hoofdzakelijk afspeelt.",
+      "enum": [
+        "Binnendienst",
+        "Buitendienst",
+        "Gemengd"
+      ]
+    }
+  }
+}

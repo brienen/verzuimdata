@@ -1,0 +1,85 @@
+{#-
+  JSON-schema van het uitwisselmodel.
+
+  Afgeleid van het sjabloon dat bij crunch_uml hoort, met deze verschillen:
+  - getallen met decimalen krijgen het type 'number', met de grenzen uit het model;
+  - tekst krijgt een maximale lengte en, waar het model die geeft, een patroon;
+  - elk object is gesloten (additionalProperties: false);
+  - een verplichte lijst staat ook in 'required', en rolnamen houden hun schrijfwijze;
+  - de omschrijving van een genest object of een lijst komt uit de associatie.
+  Daardoor is er geen nabewerking van het schema nodig.
+-#}
+{%- macro grenzen(attribuut) -%}
+{%- if attribuut.minimumwaarde_inclusief %}, "minimum": {{ attribuut.minimumwaarde_inclusief }}{% endif -%}
+{%- if attribuut.maximumwaarde_inclusief %}, "maximum": {{ attribuut.maximumwaarde_inclusief }}{% endif -%}
+{%- endmacro -%}
+
+{%- macro datatype(attribuut) -%}
+{%- set type = (attribuut.primitive or '')|lower -%}
+{%- if attribuut.enumeration is not none -%}
+"$ref": "#/$defs/{{ attribuut.enumeration.name }}"
+{%- elif type.startswith('bool') -%}
+"type": "boolean"
+{%- elif type.startswith('int') -%}
+"type": "integer"{{ grenzen(attribuut) }}
+{%- elif type == 'getal' -%}
+"type": "number"{{ grenzen(attribuut) }}
+{%- elif type == 'datum' -%}
+"$ref": "#/$defs/datum"
+{%- elif type == 'datumtijd' -%}
+"$ref": "#/$defs/datum-tijd"
+{%- elif type == 'email' -%}
+"$ref": "#/$defs/email"
+{%- else -%}
+"type": "string", "minLength": 1
+{%- if attribuut.lengte %}, "maxLength": {{ attribuut.lengte }}{% endif -%}
+{%- if attribuut.formeel_patroon %}, "pattern": {{ attribuut.formeel_patroon|tojson }}{% endif -%}
+{%- endif -%}
+{%- endmacro -%}
+
+{%- macro omschrijving(element) -%}
+{%- set tekst = [element.definitie, element.toelichting]|select|join(' ') -%}
+{%- if tekst %}"description": {{ tekst|tojson }},{% endif -%}
+{%- endmacro -%}
+
+{%- macro object(clazz, pad) -%}
+{%- set pad = pad + [clazz.name] -%}
+{%- set attributen = clazz.attributes|rejectattr('name', 'none')|list -%}
+{%- set associaties = clazz.uitgaande_associaties|reject_method('hasOrphan')|sort_order|list -%}
+{%- set verplicht = [] -%}
+"type": "object",
+"title": {{ clazz.name|tojson }},
+{{ omschrijving(clazz) }}
+"properties": {
+{%- set eigenschappen = [] -%}
+{%- for attribuut in attributen -%}
+  {%- if attribuut.verplicht %}{% set _ = verplicht.append(attribuut.name) %}{% endif -%}
+  {%- set _ = eigenschappen.append(attribuut.name|tojson ~ ': {' ~ omschrijving(attribuut) ~ datatype(attribuut) ~ '}') -%}
+{%- endfor -%}
+{%- for associatie in associaties if associatie.dst_class.name not in pad -%}
+  {%- set rol = associatie.getRole(view='src') -%}
+  {%- if associatie.isVerplicht(dst=True) %}{% set _ = verplicht.append(rol) %}{% endif -%}
+  {%- if associatie.isEnkelvoudig(dst=True) -%}
+    {%- set _ = eigenschappen.append(rol|tojson ~ ': {' ~ object(associatie.dst_class, pad) ~ '}') -%}
+  {%- else -%}
+    {%- set _ = eigenschappen.append(rol|tojson ~ ': {' ~ omschrijving(associatie) ~ '"type": "array", "items": {' ~ object(associatie.dst_class, pad) ~ '}' ~ (', "minItems": 1' if associatie.isVerplicht(dst=True) else '') ~ '}') -%}
+  {%- endif -%}
+{%- endfor -%}
+{{ eigenschappen|join(',\n') }}
+},
+"required": {{ verplicht|tojson }},
+"additionalProperties": false
+{%- endmacro -%}
+{
+"$schema": "https://json-schema.org/draft/2020-12/schema",
+"$id": "{{ args.json_schema_url }}",
+{{ object(clazz, []) }},
+"$defs": {
+  "datum": {"type": "string", "format": "date", "description": "Een datum volgens ISO 8601: JJJJ-MM-DD."},
+  "datum-tijd": {"type": "string", "format": "date-time", "description": "Een datum en tijd volgens ISO 8601, met tijdzone: JJJJ-MM-DDTUU:MM:SSZ."},
+  "email": {"type": "string", "format": "email", "description": "Een e-mailadres."}
+{%- for enum in clazz.package.get_root_package().get_enumerations_inscope()|sort(attribute='name') %},
+  {{ enum.name|tojson }}: {"type": "string", {{ omschrijving(enum) }} "enum": {{ enum.literals|map(attribute='name')|list|tojson }}}
+{%- endfor %}
+}
+}

@@ -1,0 +1,67 @@
+{#- Detailspecificatie van het informatiemodel: objecttypen, kenmerken, relaties en waardelijsten. -#}
+{%- set typen = {'date': 'datum', 'datetime': 'datum en tijd', 'integer': 'geheel getal', 'decimal': 'getal', 'boolean': 'ja/nee', 'characterstring': 'tekst'} -%}
+{%- macro cel(tekst) -%}{{ (tekst or '')|replace('|', '\\|')|replace('\n', ' ') }}{%- endmacro -%}
+{%- macro aantal(van, tot) -%}{{ van if van == tot else van ~ '..' ~ tot }}{%- endmacro -%}
+{%- macro type(attribuut) -%}
+{%- if attribuut.enumeration is not none -%}[{{ attribuut.enumeration.name }}](#{{ attribuut.enumeration.name }})
+{%- else -%}{{ typen.get((attribuut.primitive or '')|lower, attribuut.primitive or '') }}{% if attribuut.lengte and (attribuut.primitive or '')|lower == 'characterstring' %} (max. {{ attribuut.lengte }}){% endif %}
+{%- endif -%}
+{%- endmacro -%}
+# Detailspecificatie informatiemodel
+
+Deze pagina beschrijft de objecttypen, kenmerken, relaties en waardelijsten van het informatiemodel. Het is het deel van Model HR van het [Gemeentelijk Gegevensmodel](https://www.gemeentelijkgegevensmodel.nl/) dat voor het Verzuimportaal nodig is. De pagina wordt uit het model gegenereerd.
+
+Het informatiemodel beschrijft de betekenis van de gegevens. Welke gegevens daarvan worden uitgewisseld en in welke vorm, staat in de [uitwisselspecificatie](../uitwisselspecificatie.md).
+
+## Objecttypen
+
+{% for clazz in package.classes|sort(attribute='name') %}
+### {{ clazz.name }} { #{{ clazz.name }} }
+
+> {{ clazz.definitie|default('Geen definitie', true) }}
+
+{% if clazz.toelichting %}{{ clazz.toelichting }}
+
+{% endif -%}
+{% for generalisatie in clazz.superclasses if generalisatie.superclass %}{{ clazz.name }} is een subtype van [{{ generalisatie.superclass.name }}](#{{ generalisatie.superclass.name }}) en heeft ook de kenmerken en relaties van dat objecttype.
+
+{% endfor -%}
+{% if clazz.subclasses|length > 0 %}Subtypen: {% for generalisatie in clazz.subclasses if generalisatie.subclass %}[{{ generalisatie.subclass.name }}](#{{ generalisatie.subclass.name }}){% if not loop.last %}, {% endif %}{% endfor %}.
+
+{% endif -%}
+{% if clazz.attributes|length > 0 %}
+| Kenmerk | Type | Aantal | Definitie | Toelichting |
+| :--- | :--- | :--- | :--- | :--- |
+{% for attribuut in clazz.attributes if attribuut.name -%}
+| {{ attribuut.name }} | {{ type(attribuut) }} | {{ aantal(attribuut.mult_start, attribuut.mult_end) }} | {{ cel(attribuut.definitie) }} | {{ cel([attribuut.toelichting, attribuut.herkomst if (attribuut.herkomst or '').startswith('Geërfd') else none]|select|join(' ')) }} |
+{% endfor %}
+{% else %}
+{{ clazz.name }} heeft geen eigen kenmerken.
+{% endif %}
+{% set relaties = clazz.uitgaande_associaties|reject_method('hasOrphan')|list %}
+{% if relaties|length > 0 %}
+| Relatie | Naar | Aantal | Definitie | Toelichting |
+| :--- | :--- | :--- | :--- | :--- |
+{% for relatie in relaties -%}
+| {{ relatie.name }} | [{{ relatie.dst_class.name }}](#{{ relatie.dst_class.name }}) | {{ aantal(relatie.dst_mult_start, relatie.dst_mult_end) }} | {{ cel(relatie.definitie) }} | {{ cel(relatie.toelichting) }} |
+{% endfor %}
+{% endif %}
+{% endfor %}
+
+## Waardelijsten
+
+{% for enum in package.enumerations|sort(attribute='name') %}
+### {{ enum.name }} { #{{ enum.name }} }
+
+> {{ enum.definitie|default('Geen definitie', true) }}
+
+{% if enum.toelichting %}{{ enum.toelichting }}
+
+{% endif -%}
+| Waarde | Definitie |
+| :--- | :--- |
+{% for waarde in enum.literals if waarde.name -%}
+| {{ waarde.name }} | {{ cel(waarde.definitie) }} |
+{% endfor %}
+
+{% endfor %}

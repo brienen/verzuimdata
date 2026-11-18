@@ -1,0 +1,62 @@
+site_name: "Verzuimportaal: uitwisselspecificatie HR-gegevens"
+site_description: De uitwisselspecificatie voor HR- en verzuimgegevens van gemeenten voor het Verzuimportaal
+site_author: Arjen Brienen
+site_url: https://brienen.github.io/verzuimdata/
+repo_url: https://github.com/brienen/verzuimdata
+repo_name: GitHub
+theme:
+  language: nl
+  name: material
+  features:
+    - content.code.copy
+    - navigation.top
+    - toc.follow
+extra:
+  version:
+    provider: mike
+
+nav:
+  - Home: index.md
+  - Uitwisselspecificatie:
+    - Uitgelegd: uitleg_Uitwisselmodel.md
+    - JSON-schema en voorbeelden: uitwisselspecificatie.md
+    - Selectie en aanlevering: aanlevering.md
+    - Van gegevens naar indicatoren: indicatoren.md
+  - Informatiemodel:
+    - Hoofdlijnen: "Hoofdlijnen_Model HR.md"
+    - Detailspecificatie: "definities/Detail_Model HR.md"
+  - Koppelvlak API: api/index.md
+  - Vraag en antwoord: VraagEnAntwoord.md
+  - Achtergrond: Achtergrond.md
+  - Wijzigingen: wijzigingen.md
+
+not_in_nav: |
+  /404.md
+
+markdown_extensions:
+  - attr_list
+  - admonition
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.tabbed:
+      alternate_style: true
+  - markdown_include.include:
+      base_path: docs
+      throwException: true
+
+extra_css:
+  - stylesheets/extra.css
+
+plugins:
+  - mike:
+      alias_type: symlink
+      canonical_version: latest
+      version_selector: true
+  - search

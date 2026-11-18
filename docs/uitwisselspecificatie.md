@@ -1,0 +1,61 @@
+# JSON-schema en voorbeelden
+
+## Inleiding
+
+De uitwisselspecificatie legt vast welke gegevens worden aangeleverd en in welke vorm. De vastlegging is een [JSON-schema](https://json-schema.org) (versie 2020-12). Het schema is afgeleid van het [informatiemodel](Hoofdlijnen_Model HR.md). Een beschrijving in gewone taal staat op de pagina [Uitwisselspecificatie uitgelegd](uitleg_Uitwisselmodel.md).
+
+Een bericht is als volgt opgebouwd:
+
+1. Op het hoofdniveau staat het bericht, met de gegevensleverancier, de begin- en einddatum van de verslagperiode en het moment van aanleveren.
+2. Op het tweede niveau staan één of meer leveringen. Elke levering bevat de gegevens van precies één gemeente.
+3. Binnen een levering staan eerst de gegevens over de organisatie: organisatorische eenheden, functies en formatieplaatsen.
+4. Daarna volgen de werknemers, met bij elke werknemer de aanstellingscontracten met hun inzet, de rollen, het verzuim en het verlof.
+
+[![Opbouw van een bericht](images/opbouw-bericht.png)](images/opbouw-bericht.png)
+
+Aan het eind van het schema staan de datatypen en de waardelijsten (enumeraties).
+
+## Regels bij het schema
+
+- **Encoding.** Berichten zijn in [UTF-8](https://www.forumstandaardisatie.nl/open-standaarden/utf-8).
+- **Datum en tijd.** Een datum heeft de vorm `JJJJ-MM-DD`. Een datum met tijd volgt ISO 8601 en bevat een tijdzone, bijvoorbeeld `2026-03-09T08:30:00+01:00`.
+- **Getallen.** Uren en percentages zijn getallen met een punt als decimaalteken, bijvoorbeeld `32.5`. Een percentage loopt van 0 tot en met 100.
+- **Lege velden.** Een veld zonder waarde wordt weggelaten. De waarde `null` en een lege tekst zijn niet toegestaan.
+- **Gesloten objecten.** Een bericht bevat alleen de velden uit het schema. Een bericht met andere velden wordt afgekeurd.
+- **Waardelijsten.** Een waarde uit een waardelijst wordt precies zo geschreven als in het schema, met dezelfde hoofdletters.
+
+Een aantal regels kan een JSON-schema niet uitdrukken. Zij staan op de pagina [Selectie en aanlevering](aanlevering.md#regels-buiten-het-schema).
+
+## Het schema
+
+Van het schema is ook een [downloadversie](https://raw.githubusercontent.com/brienen/verzuimdata/main/v0.1/json_schema_Uitwisselmodel.json) beschikbaar.
+
+<details><summary>Toon JSON-schema</summary>
+``` { .json .copy }
+{!../v0.1/json_schema_Uitwisselmodel.json!}
+```
+</details>
+
+## Voorbeelden
+
+De voorbeelden bevatten uitsluitend verzonnen gegevens. Zij zijn gecontroleerd tegen het schema van deze versie.
+
+### Enkelvoudig voorbeeld
+
+Eén levering voor één gemeente, met één werknemer met een arbeidsovereenkomst en één afgesloten verzuimgeval. Dit voorbeeld is ook te [downloaden](https://raw.githubusercontent.com/brienen/verzuimdata/main/v0.1/enkelvoudigVoorbeeld.json).
+
+<details open><summary>Toon voorbeeldbestand</summary>
+``` { .json .copy }
+{!../v0.1/enkelvoudigVoorbeeld.json!}
+```
+</details>
+
+### Meervoudig voorbeeld
+
+Twee leveringen van één leverancier voor twee gemeenten. Het voorbeeld laat alle soorten aanstelling zien (arbeidsovereenkomst, detachering, stage), een leidinggevende rol, inzet voor derden, een verzuimgeval met gedeeltelijk herstel, lopend verzuim en verlof. Dit voorbeeld is ook te [downloaden](https://raw.githubusercontent.com/brienen/verzuimdata/main/v0.1/meervoudigVoorbeeld.json).
+
+<details><summary>Toon voorbeeldbestand</summary>
+``` { .json .copy }
+{!../v0.1/meervoudigVoorbeeld.json!}
+```
+</details>
