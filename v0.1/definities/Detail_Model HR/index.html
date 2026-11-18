@@ -1,0 +1,2495 @@
+
+<!doctype html>
+<html lang="nl" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="De uitwisselspecificatie voor HR- en verzuimgegevens van gemeenten voor het Verzuimportaal">
+      
+      
+        <meta name="author" content="Arjen Brienen">
+      
+      
+        <link rel="canonical" href="https://brienen.github.io/verzuimdata/latest/definities/Detail_Model%20HR/">
+      
+      
+        <link rel="prev" href="../../Hoofdlijnen_Model%20HR/">
+      
+      
+        <link rel="next" href="../../api/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Detailspecificatie - Verzuimportaal: uitwisselspecificatie HR-gegevens</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#detailspecificatie-informatiemodel" class="md-skip">
+          Ga naar inhoud
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Verzuimportaal: uitwisselspecificatie HR-gegevens" class="md-header__button md-logo" aria-label="Verzuimportaal: uitwisselspecificatie HR-gegevens" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Verzuimportaal: uitwisselspecificatie HR-gegevens
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Detailspecificatie
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Zoeken" placeholder="Zoeken" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Zoeken">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Leegmaken" aria-label="Leegmaken" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Zoeken initialiseren
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/brienen/verzuimdata" title="Ga naar repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigatie" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Verzuimportaal: uitwisselspecificatie HR-gegevens" class="md-nav__button md-logo" aria-label="Verzuimportaal: uitwisselspecificatie HR-gegevens" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Verzuimportaal: uitwisselspecificatie HR-gegevens
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/brienen/verzuimdata" title="Ga naar repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Uitwisselspecificatie
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Uitwisselspecificatie
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../uitleg_Uitwisselmodel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Uitgelegd
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../uitwisselspecificatie/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    JSON-schema en voorbeelden
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aanlevering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Selectie en aanlevering
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../indicatoren/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Van gegevens naar indicatoren
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Informatiemodel
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Informatiemodel
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Hoofdlijnen_Model%20HR/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hoofdlijnen
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Detailspecificatie
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Detailspecificatie
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhoudsopgave">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhoudsopgave
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objecttypen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objecttypen
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Objecttypen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#Aanstellingscontract" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aanstellingscontract
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Arbeidsovereenkomst" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arbeidsovereenkomst
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Formatieplaats" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formatieplaats
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Functie" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functie
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Functiehuis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functiehuis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Inhuurovereenkomst" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inhuurovereenkomst
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Inzet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inzet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#NormProfiel" class="md-nav__link">
+    <span class="md-ellipsis">
+      NormProfiel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#OrganisatorischeEenheidHR" class="md-nav__link">
+    <span class="md-ellipsis">
+      OrganisatorischeEenheidHR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#OverigeAanstelling" class="md-nav__link">
+    <span class="md-ellipsis">
+      OverigeAanstelling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Rol" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rol
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Verlof" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verlof
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Verzuim" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verzuim
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Werknemer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Werknemer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#waardelijsten" class="md-nav__link">
+    <span class="md-ellipsis">
+      Waardelijsten
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Waardelijsten">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#Aanstellingssoort" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aanstellingssoort
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#BestemmingInzet" class="md-nav__link">
+    <span class="md-ellipsis">
+      BestemmingInzet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Cao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cao
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Contractsoort" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contractsoort
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#OrganisatorischeEenheidsoort" class="md-nav__link">
+    <span class="md-ellipsis">
+      OrganisatorischeEenheidsoort
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#RedenEindeArbeidsovereenkomst" class="md-nav__link">
+    <span class="md-ellipsis">
+      RedenEindeArbeidsovereenkomst
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#RedenEindeVerzuim" class="md-nav__link">
+    <span class="md-ellipsis">
+      RedenEindeVerzuim
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Rolsoort" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rolsoort
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Verlofsoort" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verlofsoort
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Verzuimsoort" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verzuimsoort
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Werkomgeving" class="md-nav__link">
+    <span class="md-ellipsis">
+      Werkomgeving
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Koppelvlak API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VraagEnAntwoord/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Vraag en antwoord
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Achtergrond/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Achtergrond
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wijzigingen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Wijzigingen
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhoudsopgave">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhoudsopgave
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objecttypen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objecttypen
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Objecttypen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#Aanstellingscontract" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aanstellingscontract
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Arbeidsovereenkomst" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arbeidsovereenkomst
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Formatieplaats" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formatieplaats
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Functie" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functie
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Functiehuis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functiehuis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Inhuurovereenkomst" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inhuurovereenkomst
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Inzet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inzet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#NormProfiel" class="md-nav__link">
+    <span class="md-ellipsis">
+      NormProfiel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#OrganisatorischeEenheidHR" class="md-nav__link">
+    <span class="md-ellipsis">
+      OrganisatorischeEenheidHR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#OverigeAanstelling" class="md-nav__link">
+    <span class="md-ellipsis">
+      OverigeAanstelling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Rol" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rol
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Verlof" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verlof
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Verzuim" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verzuim
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Werknemer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Werknemer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#waardelijsten" class="md-nav__link">
+    <span class="md-ellipsis">
+      Waardelijsten
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Waardelijsten">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#Aanstellingssoort" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aanstellingssoort
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#BestemmingInzet" class="md-nav__link">
+    <span class="md-ellipsis">
+      BestemmingInzet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Cao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cao
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Contractsoort" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contractsoort
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#OrganisatorischeEenheidsoort" class="md-nav__link">
+    <span class="md-ellipsis">
+      OrganisatorischeEenheidsoort
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#RedenEindeArbeidsovereenkomst" class="md-nav__link">
+    <span class="md-ellipsis">
+      RedenEindeArbeidsovereenkomst
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#RedenEindeVerzuim" class="md-nav__link">
+    <span class="md-ellipsis">
+      RedenEindeVerzuim
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Rolsoort" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rolsoort
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Verlofsoort" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verlofsoort
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Verzuimsoort" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verzuimsoort
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#Werkomgeving" class="md-nav__link">
+    <span class="md-ellipsis">
+      Werkomgeving
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="detailspecificatie-informatiemodel">Detailspecificatie informatiemodel<a class="headerlink" href="#detailspecificatie-informatiemodel" title="Permanent link">&para;</a></h1>
+<p>Deze pagina beschrijft de objecttypen, kenmerken, relaties en waardelijsten van het informatiemodel. Het is het deel van Model HR van het <a href="https://www.gemeentelijkgegevensmodel.nl/">Gemeentelijk Gegevensmodel</a> dat voor het Verzuimportaal nodig is. De pagina wordt uit het model gegenereerd.</p>
+<p>Het informatiemodel beschrijft de betekenis van de gegevens. Welke gegevens daarvan worden uitgewisseld en in welke vorm, staat in de <a href="../../uitwisselspecificatie/">uitwisselspecificatie</a>.</p>
+<h2 id="objecttypen">Objecttypen<a class="headerlink" href="#objecttypen" title="Permanent link">&para;</a></h2>
+<h3 id="Aanstellingscontract">Aanstellingscontract<a class="headerlink" href="#Aanstellingscontract" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Een overeenkomst op grond waarvan een werknemer werkzaamheden verricht voor de organisatie.</p>
+</blockquote>
+<p>Abstract objecttype met de subtypen Arbeidsovereenkomst, Inhuurovereenkomst en OverigeAanstelling. Draagt de kenmerken en associaties die voor alle drie gelden. De aanstellingssoort geeft binnen elk subtype de precieze vorm. Een verlenging of een nieuwe overeenkomst is een nieuw voorkomen; de in- en uitdiensttreding van de werknemer zelf staat op Medewerker.</p>
+<p>Subtypen: <a href="#Arbeidsovereenkomst">Arbeidsovereenkomst</a>, <a href="#Inhuurovereenkomst">Inhuurovereenkomst</a>, <a href="#OverigeAanstelling">OverigeAanstelling</a>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Kenmerk</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Aantal</th>
+<th style="text-align: left;">Definitie</th>
+<th style="text-align: left;">Toelichting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">aanstellingssoort</td>
+<td style="text-align: left;"><a href="#Aanstellingssoort">Aanstellingssoort</a></td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">De soort aanstelling.</td>
+<td style="text-align: left;">Elke waarde hoort bij precies een subtype. Bepaalt samen met de cao of de aanstelling tot de bezetting telt, en onderscheidt de vormen van inhuur.</td>
+</tr>
+<tr>
+<td style="text-align: left;">datumStart</td>
+<td style="text-align: left;">datum</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">De eerste dag waarop het contract geldt.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">datumEinde</td>
+<td style="text-align: left;">datum</td>
+<td style="text-align: left;">0..1</td>
+<td style="text-align: left;">De laatste dag waarop het contract geldt.</td>
+<td style="text-align: left;">Leeg zolang het contract loopt en geen einddatum is overeengekomen.</td>
+</tr>
+<tr>
+<td style="text-align: left;">urenPerWeek</td>
+<td style="text-align: left;">getal</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Het aantal uren per week dat volgens het contract wordt gewerkt.</td>
+<td style="text-align: left;">Grondslag voor de bezetting in fte en voor de weging van verzuim naar deeltijd.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Relatie</th>
+<th style="text-align: left;">Naar</th>
+<th style="text-align: left;">Aantal</th>
+<th style="text-align: left;">Definitie</th>
+<th style="text-align: left;">Toelichting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">heeft inzet</td>
+<td style="text-align: left;"><a href="#Inzet">Inzet</a></td>
+<td style="text-align: left;">0..*</td>
+<td style="text-align: left;">De inzet die op grond van het contract wordt verricht.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">conform functie</td>
+<td style="text-align: left;"><a href="#Functie">Functie</a></td>
+<td style="text-align: left;">0..1</td>
+<td style="text-align: left;">De functie die in het contract is overeengekomen.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">onderdeel van</td>
+<td style="text-align: left;"><a href="#OrganisatorischeEenheidHR">OrganisatorischeEenheidHR</a></td>
+<td style="text-align: left;">1..*</td>
+<td style="text-align: left;">De eenheid of eenheden waartoe het contract organisatorisch behoort.</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="Arbeidsovereenkomst">Arbeidsovereenkomst<a class="headerlink" href="#Arbeidsovereenkomst" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>De overeenkomst waarbij de werknemer zich verbindt om in dienst van de organisatie, tegen loon, gedurende zekere tijd arbeid te verrichten.</p>
+</blockquote>
+<p>De definitie volgt artikel 7:610 van het Burgerlijk Wetboek. Alleen arbeidsovereenkomsten tellen voor de bezetting; welke precies, volgt uit de cao en de aanstellingssoort.</p>
+<p>Arbeidsovereenkomst is een subtype van <a href="#Aanstellingscontract">Aanstellingscontract</a> en heeft ook de kenmerken en relaties van dat objecttype.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Kenmerk</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Aantal</th>
+<th style="text-align: left;">Definitie</th>
+<th style="text-align: left;">Toelichting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">salaris</td>
+<td style="text-align: left;">getal</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Het bruto salaris per maand dat volgt uit schaal en periodiek, naar rato van de overeengekomen arbeidsduur.</td>
+<td style="text-align: left;">Bestanddelen van de loonsom buiten het salaris staan in Looncomponent.</td>
+</tr>
+<tr>
+<td style="text-align: left;">schaal</td>
+<td style="text-align: left;">geheel getal</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">De salarisschaal waarin de werknemer is ingedeeld.</td>
+<td style="text-align: left;">Het waardebereik volgt uit de cao; voor gemeenten 1 tot en met 20.</td>
+</tr>
+<tr>
+<td style="text-align: left;">periodiek</td>
+<td style="text-align: left;">geheel getal</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Het volgnummer van de trede binnen de salarisschaal.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">contractsoort</td>
+<td style="text-align: left;"><a href="#Contractsoort">Contractsoort</a></td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Aanduiding of de overeenkomst voor bepaalde of voor onbepaalde tijd is aangegaan.</td>
+<td style="text-align: left;">Grondslag voor tijdelijke dienst en voor vaste en flexibele bezetting.</td>
+</tr>
+<tr>
+<td style="text-align: left;">cao</td>
+<td style="text-align: left;"><a href="#Cao">Cao</a></td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">De collectieve arbeidsovereenkomst die op de overeenkomst van toepassing is.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">banenafspraak</td>
+<td style="text-align: left;">ja/nee</td>
+<td style="text-align: left;">0..1</td>
+<td style="text-align: left;">Aanduiding dat de overeenkomst meetelt voor de banenafspraak voor mensen met een arbeidsbeperking.</td>
+<td style="text-align: left;">Grondslag voor medewerkers met afstand tot de arbeidsmarkt.</td>
+</tr>
+<tr>
+<td style="text-align: left;">redenEinde</td>
+<td style="text-align: left;"><a href="#RedenEindeArbeidsovereenkomst">RedenEindeArbeidsovereenkomst</a></td>
+<td style="text-align: left;">0..1</td>
+<td style="text-align: left;">De reden waarom de overeenkomst is geëindigd.</td>
+<td style="text-align: left;">Leeg zolang de overeenkomst loopt. Grondslag voor vrijwillige en onvrijwillige uitstroom.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Formatieplaats">Formatieplaats<a class="headerlink" href="#Formatieplaats" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Een in het formatieplan vastgestelde arbeidsplaats bij een organisatorische eenheid.</p>
+</blockquote>
+<p>De formatie is de toegestane omvang, niet de werkelijke bezetting. Een formatieplaats bestaat ook als zij onbezet is.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Kenmerk</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Aantal</th>
+<th style="text-align: left;">Definitie</th>
+<th style="text-align: left;">Toelichting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">urenPerWeek</td>
+<td style="text-align: left;">getal</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">De omvang van de formatieplaats in uren per week.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">datumBegin</td>
+<td style="text-align: left;">datum</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">De eerste dag waarop de formatieplaats geldig is.</td>
+<td style="text-align: left;">Grondslag voor de formatie op een peildatum.</td>
+</tr>
+<tr>
+<td style="text-align: left;">datumEinde</td>
+<td style="text-align: left;">datum</td>
+<td style="text-align: left;">0..1</td>
+<td style="text-align: left;">De laatste dag waarop de formatieplaats geldig is.</td>
+<td style="text-align: left;">Leeg zolang de formatieplaats bestaat.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Relatie</th>
+<th style="text-align: left;">Naar</th>
+<th style="text-align: left;">Aantal</th>
+<th style="text-align: left;">Definitie</th>
+<th style="text-align: left;">Toelichting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">functie van formatieplaats</td>
+<td style="text-align: left;"><a href="#Functie">Functie</a></td>
+<td style="text-align: left;">1..*</td>
+<td style="text-align: left;">De functie waarvoor de formatieplaats is vastgesteld.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">onderdeel van</td>
+<td style="text-align: left;"><a href="#OrganisatorischeEenheidHR">OrganisatorischeEenheidHR</a></td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">De organisatorische eenheid waartoe de formatieplaats behoort.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">toegewezen aan</td>
+<td style="text-align: left;"><a href="#Aanstellingscontract">Aanstellingscontract</a></td>
+<td style="text-align: left;">0..*</td>
+<td style="text-align: left;">Het contract waarmee de formatieplaats is bezet.</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="Functie">Functie<a class="headerlink" href="#Functie" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Het samenstel van taken en werkzaamheden dat aan een werknemer kan worden opgedragen.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Kenmerk</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Aantal</th>
+<th style="text-align: left;">Definitie</th>
+<th style="text-align: left;">Toelichting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">tekst (max. 50)</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">De code waarmee de functie in de organisatie wordt aangeduid.</td>
+<td style="text-align: left;">Sleutel voor de vertaaltabel naar een landelijke indeling.</td>
+</tr>
+<tr>
+<td style="text-align: left;">naam</td>
+<td style="text-align: left;">tekst (max. 80)</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">De naam van de functie.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">omschrijving</td>
+<td style="text-align: left;">tekst</td>
+<td style="text-align: left;">0..1</td>
+<td style="text-align: left;">Een beschrijving van de functie.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">taken</td>
+<td style="text-align: left;">tekst</td>
+<td style="text-align: left;">0..1</td>
+<td style="text-align: left;">De taken die bij de functie horen.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">schaal</td>
+<td style="text-align: left;">geheel getal</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">De salarisschaal waarin de functie is gewaardeerd.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">leidinggevend</td>
+<td style="text-align: left;">ja/nee</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Aanduiding dat aan de functie leidinggevende taken en personele verantwoordelijkheid zijn verbonden.</td>
+<td style="text-align: left;">Projectleiders, meewerkend voorlieden en coördinatoren tellen niet als leidinggevend.</td>
+</tr>
+<tr>
+<td style="text-align: left;">werkomgeving</td>
+<td style="text-align: left;"><a href="#Werkomgeving">Werkomgeving</a></td>
+<td style="text-align: left;">0..1</td>
+<td style="text-align: left;">De omgeving waarin het werk van de functie zich hoofdzakelijk afspeelt.</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Relatie</th>
+<th style="text-align: left;">Naar</th>
+<th style="text-align: left;">Aantal</th>
+<th style="text-align: left;">Definitie</th>
+<th style="text-align: left;">Toelichting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">gebaseerd op</td>
+<td style="text-align: left;"><a href="#NormProfiel">NormProfiel</a></td>
+<td style="text-align: left;">0..1</td>
+<td style="text-align: left;">Het normprofiel waarop de functie is gebaseerd.</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="Functiehuis">Functiehuis<a class="headerlink" href="#Functiehuis" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Model waarin functies van een organisatie worden beschreven.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Kenmerk</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Aantal</th>
+<th style="text-align: left;">Definitie</th>
+<th style="text-align: left;">Toelichting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">naam</td>
+<td style="text-align: left;">tekst (max. 80)</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">omschrijving</td>
+<td style="text-align: left;">tekst</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="Inhuurovereenkomst">Inhuurovereenkomst<a class="headerlink" href="#Inhuurovereenkomst" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Een overeenkomst op grond waarvan een externe kracht werkzaamheden verricht voor de organisatie, zonder bij haar in dienst te zijn.</p>
+</blockquote>
+<p>Subtype van Aanstellingscontract. Omvat uitzendwerk, detachering vanuit een andere organisatie, payrolling en opdrachten aan zelfstandigen; de aanstellingssoort zegt welke vorm het is. Telt niet voor de bezetting, wel voor de externe inhuur en de flexibele bezetting.</p>
+<p>Inhuurovereenkomst is een subtype van <a href="#Aanstellingscontract">Aanstellingscontract</a> en heeft ook de kenmerken en relaties van dat objecttype.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Kenmerk</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Aantal</th>
+<th style="text-align: left;">Definitie</th>
+<th style="text-align: left;">Toelichting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">kosten</td>
+<td style="text-align: left;">getal</td>
+<td style="text-align: left;">0..1</td>
+<td style="text-align: left;">De kosten van de inhuur over de looptijd van de overeenkomst, in euro's.</td>
+<td style="text-align: left;">De financiële administratie blijft de bron; het kenmerk is bedoeld voor situaties waarin het HR-systeem de kosten kent.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Inzet">Inzet<a class="headerlink" href="#Inzet" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>De inzet van een werknemer voor een functie bij een organisatorische eenheid in een bepaalde periode, op grond van een aanstellingscontract.</p>
+</blockquote>
+<p>Een contract kan meer inzetten hebben, gelijktijdig of na elkaar. Opeenvolgende inzetten vormen de functie- en afdelingshistorie waaruit doorstroom en verblijfsduur in een functie volgen.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Kenmerk</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Aantal</th>
+<th style="text-align: left;">Definitie</th>
+<th style="text-align: left;">Toelichting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">datumBegin</td>
+<td style="text-align: left;">datum</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">De eerste dag van de inzet.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">datumEinde</td>
+<td style="text-align: left;">datum</td>
+<td style="text-align: left;">0..1</td>
+<td style="text-align: left;">De laatste dag van de inzet.</td>
+<td style="text-align: left;">Leeg zolang de inzet loopt.</td>
+</tr>
+<tr>
+<td style="text-align: left;">uren</td>
+<td style="text-align: left;">getal</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Het aantal uren per week van de inzet.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">percentage</td>
+<td style="text-align: left;">getal</td>
+<td style="text-align: left;">0..1</td>
+<td style="text-align: left;">Het deel van de uren van de inzet dat daadwerkelijk wordt uitgevoerd, als percentage.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">bestemming</td>
+<td style="text-align: left;"><a href="#BestemmingInzet">BestemmingInzet</a></td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Aanduiding of de inzet voor de eigen organisatie is of voor derden.</td>
+<td style="text-align: left;">Grondslag voor de inzet voor derden.</td>
+</tr>
+<tr>
+<td style="text-align: left;">schaal</td>
+<td style="text-align: left;">geheel getal</td>
+<td style="text-align: left;">0..1</td>
+<td style="text-align: left;">De salarisschaal waarin de werknemer voor deze inzet is ingedeeld.</td>
+<td style="text-align: left;">Alleen gevuld als de schaal afwijkt van die van de functie, bijvoorbeeld bij een aanloopschaal.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Relatie</th>
+<th style="text-align: left;">Naar</th>
+<th style="text-align: left;">Aantal</th>
+<th style="text-align: left;">Definitie</th>
+<th style="text-align: left;">Toelichting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">inzet bij</td>
+<td style="text-align: left;"><a href="#OrganisatorischeEenheidHR">OrganisatorischeEenheidHR</a></td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">De organisatorische eenheid waar de inzet wordt verricht.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">inzet voor functie</td>
+<td style="text-align: left;"><a href="#Functie">Functie</a></td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">De functie waarvoor de inzet wordt verricht.</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="NormProfiel">NormProfiel<a class="headerlink" href="#NormProfiel" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Een generieke functie uit een landelijk functiewaarderingssysteem, waarop functies van de organisatie zijn gebaseerd.</p>
+</blockquote>
+<p>Voor gemeenten het systeem HR21.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Kenmerk</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Aantal</th>
+<th style="text-align: left;">Definitie</th>
+<th style="text-align: left;">Toelichting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">tekst (max. 10)</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">De code van het normprofiel in het functiewaarderingssysteem.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">omschrijving</td>
+<td style="text-align: left;">tekst (max. 100)</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">De naam of omschrijving van het normprofiel.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">schaal</td>
+<td style="text-align: left;">geheel getal</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">De salarisschaal die bij het normprofiel hoort.</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Relatie</th>
+<th style="text-align: left;">Naar</th>
+<th style="text-align: left;">Aantal</th>
+<th style="text-align: left;">Definitie</th>
+<th style="text-align: left;">Toelichting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">onderdeel van</td>
+<td style="text-align: left;"><a href="#Functiehuis">Functiehuis</a></td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Het functiehuis waarvan het normprofiel deel uitmaakt.</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="OrganisatorischeEenheidHR">OrganisatorischeEenheidHR<a class="headerlink" href="#OrganisatorischeEenheidHR" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Een organisatorische eenheid zoals vastgelegd in de personeelsadministratie.</p>
+</blockquote>
+<p>Specialisatie van Organisatorische eenheid uit het RGBZ; de plaats in de organisatie volgt uit de associatie 'is deel van' van dat objecttype.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Kenmerk</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Aantal</th>
+<th style="text-align: left;">Definitie</th>
+<th style="text-align: left;">Toelichting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">organisatieIdentificatie</td>
+<td style="text-align: left;">tekst (max. 24)</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Een korte identificatie van de organisatorische eenheid.</td>
+<td style="text-align: left;">Geërfd van OrganisatorischeEenheid</td>
+</tr>
+<tr>
+<td style="text-align: left;">datumOntstaan</td>
+<td style="text-align: left;">datum</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">De datum waarop de organisatorische eenheid is ontstaan.</td>
+<td style="text-align: left;">Geërfd van OrganisatorischeEenheid</td>
+</tr>
+<tr>
+<td style="text-align: left;">datumOpheffing</td>
+<td style="text-align: left;">datum</td>
+<td style="text-align: left;">0..1</td>
+<td style="text-align: left;">De datum waarop de organisatorische eenheid is opgeheven.</td>
+<td style="text-align: left;">Geërfd van OrganisatorischeEenheid</td>
+</tr>
+<tr>
+<td style="text-align: left;">naam</td>
+<td style="text-align: left;">tekst (max. 80)</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">De naam van de eenheid in de personeelsadministratie.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">type</td>
+<td style="text-align: left;"><a href="#OrganisatorischeEenheidsoort">OrganisatorischeEenheidsoort</a></td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Het niveau van de eenheid in de indeling van de organisatie.</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Relatie</th>
+<th style="text-align: left;">Naar</th>
+<th style="text-align: left;">Aantal</th>
+<th style="text-align: left;">Definitie</th>
+<th style="text-align: left;">Toelichting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Is deel van</td>
+<td style="text-align: left;"><a href="#OrganisatorischeEenheidHR">OrganisatorischeEenheidHR</a></td>
+<td style="text-align: left;">0..1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="OverigeAanstelling">OverigeAanstelling<a class="headerlink" href="#OverigeAanstelling" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Een aanstellingscontract dat geen arbeidsovereenkomst en geen inhuurovereenkomst is.</p>
+</blockquote>
+<p>Subtype van Aanstellingscontract voor wie in de organisatie werkt zonder arbeidsovereenkomst en zonder te zijn ingehuurd: stagiairs, mensen op een werkervaringsplaats en overige vormen, zoals vrijwilligers. Telt niet voor de bezetting en niet voor de externe inhuur. Heeft geen eigen kenmerken; de aanstellingssoort zegt welke vorm het is.</p>
+<p>OverigeAanstelling is een subtype van <a href="#Aanstellingscontract">Aanstellingscontract</a> en heeft ook de kenmerken en relaties van dat objecttype.</p>
+<p>OverigeAanstelling heeft geen eigen kenmerken.</p>
+<h3 id="Rol">Rol<a class="headerlink" href="#Rol" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Een taak of bevoegdheid die een werknemer in een bepaalde periode vervult binnen een organisatorische eenheid, naast of als onderdeel van zijn functie.</p>
+</blockquote>
+<p>De rol legt vast wie in welke periode leiding geeft aan welke eenheid.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Kenmerk</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Aantal</th>
+<th style="text-align: left;">Definitie</th>
+<th style="text-align: left;">Toelichting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">datumBegin</td>
+<td style="text-align: left;">datum</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">De eerste dag waarop de werknemer de rol vervult.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">datumEinde</td>
+<td style="text-align: left;">datum</td>
+<td style="text-align: left;">0..1</td>
+<td style="text-align: left;">De laatste dag waarop de werknemer de rol vervult.</td>
+<td style="text-align: left;">Leeg zolang de rol wordt vervuld.</td>
+</tr>
+<tr>
+<td style="text-align: left;">omschrijving</td>
+<td style="text-align: left;">tekst (max. 50)</td>
+<td style="text-align: left;">0..1</td>
+<td style="text-align: left;">Een vrije omschrijving van de rol.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">rolsoort</td>
+<td style="text-align: left;"><a href="#Rolsoort">Rolsoort</a></td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">De soort rol.</td>
+<td style="text-align: left;">Maakt leidinggevenden eenduidig herkenbaar.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Relatie</th>
+<th style="text-align: left;">Naar</th>
+<th style="text-align: left;">Aantal</th>
+<th style="text-align: left;">Definitie</th>
+<th style="text-align: left;">Toelichting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">hoort bij</td>
+<td style="text-align: left;"><a href="#OrganisatorischeEenheidHR">OrganisatorischeEenheidHR</a></td>
+<td style="text-align: left;">0..1</td>
+<td style="text-align: left;">De organisatorische eenheid waarbinnen de rol wordt vervuld.</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="Verlof">Verlof<a class="headerlink" href="#Verlof" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Een periode waarin een werknemer met toestemming van de werkgever, of op grond van de wet of de cao, de overeengekomen arbeid niet verricht.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Kenmerk</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Aantal</th>
+<th style="text-align: left;">Definitie</th>
+<th style="text-align: left;">Toelichting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">datumtijdStart</td>
+<td style="text-align: left;">datum en tijd</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Het moment waarop het verlof begint.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">datumtijdEinde</td>
+<td style="text-align: left;">datum en tijd</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Het moment waarop het verlof eindigt.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">datumAanvraag</td>
+<td style="text-align: left;">datum</td>
+<td style="text-align: left;">0..1</td>
+<td style="text-align: left;">De datum waarop het verlof is aangevraagd.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">datumToekenning</td>
+<td style="text-align: left;">datum</td>
+<td style="text-align: left;">0..1</td>
+<td style="text-align: left;">De datum waarop het verlof is toegekend.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">goedgekeurd</td>
+<td style="text-align: left;">ja/nee</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Aanduiding dat het verlof is goedgekeurd.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">verlofsoort</td>
+<td style="text-align: left;"><a href="#Verlofsoort">Verlofsoort</a></td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">De soort verlof.</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="Verzuim">Verzuim<a class="headerlink" href="#Verzuim" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Een aaneengesloten periode waarin een werknemer de overeengekomen arbeid geheel of gedeeltelijk niet verricht, anders dan door verlof.</p>
+</blockquote>
+<p>Een verzuimgeval loopt van de eerste verzuimdag tot het herstel. Zwangerschaps- en bevallingsverlof is verlof en geen verzuim; ziekte als gevolg van zwangerschap is wel verzuim. De medische oorzaak wordt niet vastgelegd.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Kenmerk</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Aantal</th>
+<th style="text-align: left;">Definitie</th>
+<th style="text-align: left;">Toelichting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">datumtijdStart</td>
+<td style="text-align: left;">datum en tijd</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Het moment waarop het verzuim begint.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">datumtijdEinde</td>
+<td style="text-align: left;">datum en tijd</td>
+<td style="text-align: left;">0..1</td>
+<td style="text-align: left;">Het moment waarop het verzuim eindigt.</td>
+<td style="text-align: left;">Leeg zolang het verzuim loopt.</td>
+</tr>
+<tr>
+<td style="text-align: left;">percentageArbeidsongeschiktheid</td>
+<td style="text-align: left;">getal</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Het deel van de overeengekomen arbeidsduur waarvoor de werknemer verzuimt, als percentage.</td>
+<td style="text-align: left;">100 bij volledig verzuim. Een wijziging is historie van dit kenmerk en geen nieuw verzuimgeval.</td>
+</tr>
+<tr>
+<td style="text-align: left;">verzuimsoort</td>
+<td style="text-align: left;"><a href="#Verzuimsoort">Verzuimsoort</a></td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">De soort verzuim.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">redenEinde</td>
+<td style="text-align: left;"><a href="#RedenEindeVerzuim">RedenEindeVerzuim</a></td>
+<td style="text-align: left;">0..1</td>
+<td style="text-align: left;">De reden waarom het verzuim is geëindigd.</td>
+<td style="text-align: left;">Leeg zolang het verzuim loopt. Grondslag voor het aandeel hersteld.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Werknemer">Werknemer<a class="headerlink" href="#Werknemer" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Een persoon die op grond van een aanstellingscontract werkzaamheden verricht voor de organisatie.</p>
+</blockquote>
+<p>Omvat eigen personeel (arbeidsovereenkomst) en externen (inhuurovereenkomst). Specialisatie van Medewerker uit het RGBZ; de identificatie, de geslachtsaanduiding en de data van in- en uitdiensttreding worden daarvan geërfd.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Kenmerk</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Aantal</th>
+<th style="text-align: left;">Definitie</th>
+<th style="text-align: left;">Toelichting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">medewerkerIdentificatie</td>
+<td style="text-align: left;">tekst (max. 24)</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Een korte unieke aanduiding van de medewerker.</td>
+<td style="text-align: left;">Geërfd van Medewerker</td>
+</tr>
+<tr>
+<td style="text-align: left;">geslachtsaanduiding</td>
+<td style="text-align: left;">tekst (max. 1)</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Een aanduiding die aangeeft of de persoon een man of een vrouw is, of dat het geslacht nog onbekend is.</td>
+<td style="text-align: left;">Geërfd van Medewerker</td>
+</tr>
+<tr>
+<td style="text-align: left;">naam</td>
+<td style="text-align: left;">tekst (max. 80)</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">De achternaam van de werknemer.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">voornaam</td>
+<td style="text-align: left;">tekst (max. 40)</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">De voornaam of roepnaam van de werknemer.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">geboortedatum</td>
+<td style="text-align: left;">datum</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">De datum waarop de werknemer is geboren.</td>
+<td style="text-align: left;">Grondslag voor de leeftijdsopbouw. In een uitwisseling volstaat het geboortejaar.</td>
+</tr>
+<tr>
+<td style="text-align: left;">woonplaats</td>
+<td style="text-align: left;">tekst (max. 50)</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">De plaats waar de werknemer woont.</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Relatie</th>
+<th style="text-align: left;">Naar</th>
+<th style="text-align: left;">Aantal</th>
+<th style="text-align: left;">Definitie</th>
+<th style="text-align: left;">Toelichting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">heeft verzuim</td>
+<td style="text-align: left;"><a href="#Verzuim">Verzuim</a></td>
+<td style="text-align: left;">0..*</td>
+<td style="text-align: left;">Het verzuim van de werknemer.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">heeft verlof</td>
+<td style="text-align: left;"><a href="#Verlof">Verlof</a></td>
+<td style="text-align: left;">0..*</td>
+<td style="text-align: left;">Het verlof van de werknemer.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">heeft</td>
+<td style="text-align: left;"><a href="#Rol">Rol</a></td>
+<td style="text-align: left;">0..*</td>
+<td style="text-align: left;">De rol die de werknemer vervult.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">heeft aanstellingscontract</td>
+<td style="text-align: left;"><a href="#Aanstellingscontract">Aanstellingscontract</a></td>
+<td style="text-align: left;">1..*</td>
+<td style="text-align: left;">Het contract op grond waarvan de werknemer voor de organisatie werkt.</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="waardelijsten">Waardelijsten<a class="headerlink" href="#waardelijsten" title="Permanent link">&para;</a></h2>
+<h3 id="Aanstellingssoort">Aanstellingssoort<a class="headerlink" href="#Aanstellingssoort" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>De soort aanstelling op grond waarvan een werknemer voor de organisatie werkt.</p>
+</blockquote>
+<p>De eerste drie waarden horen bij Arbeidsovereenkomst, de volgende vier bij Inhuurovereenkomst en de laatste drie bij OverigeAanstelling.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Waarde</th>
+<th style="text-align: left;">Definitie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Reguliere arbeidsovereenkomst</td>
+<td style="text-align: left;">Arbeidsovereenkomst met een vaste arbeidsomvang. Telt voor de bezetting.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Oproepovereenkomst</td>
+<td style="text-align: left;">Arbeidsovereenkomst met een flexibel aantal uren. Telt voor de bezetting en voor de flexibele bezetting.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Leerarbeidsovereenkomst</td>
+<td style="text-align: left;">Arbeidsovereenkomst met een student in de beroepsbegeleidende leerweg (bbl). Telt voor de bezetting.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Uitzendovereenkomst</td>
+<td style="text-align: left;">Inhuur via een uitzendbureau.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Detachering</td>
+<td style="text-align: left;">Inhuur van iemand die in dienst is bij een andere organisatie.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Payrollovereenkomst</td>
+<td style="text-align: left;">Inhuur waarbij de organisatie zelf werft en het juridisch werkgeverschap bij een payrollbedrijf ligt.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Opdracht aan zelfstandige</td>
+<td style="text-align: left;">Opdracht aan een zelfstandige zonder personeel (zzp).</td>
+</tr>
+<tr>
+<td style="text-align: left;">Stageovereenkomst</td>
+<td style="text-align: left;">Overeenkomst met een stagiair in het kader van een opleiding. Telt niet voor de bezetting.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Werkervaringsplaats</td>
+<td style="text-align: left;">Overeenkomst voor het opdoen van werkervaring. Telt niet voor de bezetting.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Overig</td>
+<td style="text-align: left;">Een andere vorm, zoals vrijwilligerswerk.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="BestemmingInzet">BestemmingInzet<a class="headerlink" href="#BestemmingInzet" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>De organisatie waarvoor een inzet wordt verricht.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Waarde</th>
+<th style="text-align: left;">Definitie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Eigen organisatie</td>
+<td style="text-align: left;">De inzet is voor de eigen organisatie.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Derden</td>
+<td style="text-align: left;">De inzet is voor een andere organisatie, bijvoorbeeld bij detachering of dienstverlening aan een andere gemeente.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Cao">Cao<a class="headerlink" href="#Cao" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>De collectieve arbeidsovereenkomst die op een arbeidsovereenkomst van toepassing is.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Waarde</th>
+<th style="text-align: left;">Definitie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Cao Gemeenten</td>
+<td style="text-align: left;">De cao voor gemeenten. Telt voor de bezetting.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Cao SGO</td>
+<td style="text-align: left;">De cao Samenwerkende Gemeentelijke Organisaties. Telt voor de bezetting.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Cao Aan de Slag</td>
+<td style="text-align: left;">De cao voor mensen met een arbeidsbeperking in dienst van gemeenten. Telt niet voor de bezetting.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Cao Sociale Werkvoorziening</td>
+<td style="text-align: left;">De cao voor de sociale werkvoorziening. Telt niet voor de bezetting.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Overig</td>
+<td style="text-align: left;">Een andere cao.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Contractsoort">Contractsoort<a class="headerlink" href="#Contractsoort" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>De duur waarvoor een arbeidsovereenkomst is aangegaan.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Waarde</th>
+<th style="text-align: left;">Definitie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Bepaalde tijd</td>
+<td style="text-align: left;">De overeenkomst eindigt op een vooraf bepaald moment of bij een vooraf bepaalde gebeurtenis.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Onbepaalde tijd</td>
+<td style="text-align: left;">De overeenkomst heeft geen vooraf bepaald einde.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="OrganisatorischeEenheidsoort">OrganisatorischeEenheidsoort<a class="headerlink" href="#OrganisatorischeEenheidsoort" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Het niveau van een organisatorische eenheid in de indeling van de organisatie.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Waarde</th>
+<th style="text-align: left;">Definitie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Concern</td>
+<td style="text-align: left;">De organisatie als geheel.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Directie</td>
+<td style="text-align: left;">Een directie of domein.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Afdeling</td>
+<td style="text-align: left;">Een afdeling.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Team</td>
+<td style="text-align: left;">Een team.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Griffie</td>
+<td style="text-align: left;">De griffie; hoort bij de organisatie, maar staat buiten de ambtelijke lijn.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Overig</td>
+<td style="text-align: left;">Een ander niveau.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="RedenEindeArbeidsovereenkomst">RedenEindeArbeidsovereenkomst<a class="headerlink" href="#RedenEindeArbeidsovereenkomst" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>De reden waarom een arbeidsovereenkomst is geëindigd.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Waarde</th>
+<th style="text-align: left;">Definitie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Arbeidsongeschiktheid</td>
+<td style="text-align: left;">Beëindiging wegens langdurige arbeidsongeschiktheid.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Einde tijdelijk contract</td>
+<td style="text-align: left;">Het aflopen van een overeenkomst voor bepaalde tijd.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Ontslag door werkgever</td>
+<td style="text-align: left;">Ontslag op initiatief van de werkgever, anders dan door reorganisatie.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Overlijden</td>
+<td style="text-align: left;">Het overlijden van de werknemer.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Pensioen</td>
+<td style="text-align: left;">Pensionering, ook bij vervroegd uittreden.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Reorganisatie</td>
+<td style="text-align: left;">Boventalligheid of opheffing van de functie.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Vrijwillig vertrek</td>
+<td style="text-align: left;">De werknemer heeft zelf ontslag genomen.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Overig</td>
+<td style="text-align: left;">Een andere of onbekende reden.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="RedenEindeVerzuim">RedenEindeVerzuim<a class="headerlink" href="#RedenEindeVerzuim" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>De reden waarom een verzuim is geëindigd.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Waarde</th>
+<th style="text-align: left;">Definitie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Einde aanstelling</td>
+<td style="text-align: left;">Het contract van de werknemer is geëindigd terwijl het verzuim liep.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Einde wachttijd</td>
+<td style="text-align: left;">De wettelijke periode van loondoorbetaling bij ziekte is verstreken.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Hersteld</td>
+<td style="text-align: left;">De werknemer heeft het werk volledig hervat.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Overlijden</td>
+<td style="text-align: left;">Het overlijden van de werknemer.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Overig</td>
+<td style="text-align: left;">Een andere of onbekende reden.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Rolsoort">Rolsoort<a class="headerlink" href="#Rolsoort" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>De soort rol die een werknemer vervult.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Waarde</th>
+<th style="text-align: left;">Definitie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Leidinggevende</td>
+<td style="text-align: left;">Geeft leiding aan de eenheid en draagt personele verantwoordelijkheid.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Coördinerend</td>
+<td style="text-align: left;">Stuurt werk aan zonder personele verantwoordelijkheid, zoals een coördinator, projectleider of meewerkend voorman.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Overig</td>
+<td style="text-align: left;">Een andere rol.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Verlofsoort">Verlofsoort<a class="headerlink" href="#Verlofsoort" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>De soort verlof, naar de Wet arbeid en zorg en de cao.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Waarde</th>
+<th style="text-align: left;">Definitie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Adoptie- en pleegzorgverlof</td>
+<td style="text-align: left;">Verlof bij adoptie of opname van een pleegkind.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Calamiteitenverlof</td>
+<td style="text-align: left;">Kort verlof bij onvoorziene persoonlijke omstandigheden.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Geboorteverlof</td>
+<td style="text-align: left;">Verlof voor de partner na de geboorte, ook het aanvullend geboorteverlof.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Kortdurend zorgverlof</td>
+<td style="text-align: left;">Verlof voor de noodzakelijke verzorging van een naaste.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Langdurend zorgverlof</td>
+<td style="text-align: left;">Verlof bij een levensbedreigende ziekte of langdurige zorgbehoefte van een naaste.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Onbetaald verlof</td>
+<td style="text-align: left;">Onbetaald verlof op eigen verzoek.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Ouderschapsverlof betaald</td>
+<td style="text-align: left;">Het deel van het ouderschapsverlof waarvoor een uitkering geldt.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Ouderschapsverlof onbetaald</td>
+<td style="text-align: left;">Het overige ouderschapsverlof.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Vakantie</td>
+<td style="text-align: left;">Vakantieverlof.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Zwangerschaps- en bevallingsverlof</td>
+<td style="text-align: left;">Verlof rond zwangerschap en bevalling. Telt niet als verzuim.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Overig</td>
+<td style="text-align: left;">Een andere soort verlof.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Verzuimsoort">Verzuimsoort<a class="headerlink" href="#Verzuimsoort" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>De soort verzuim, voor zover een werkgever die mag vastleggen.</p>
+</blockquote>
+<p>De waarden volgen wat een werkgever volgens de beleidsregels van de Autoriteit Persoonsgegevens over een ziekmelding mag vastleggen. Daarom is er geen waarde voor de medische oorzaak en geen onderscheid naar de afzonderlijke vangnetbepalingen. Alle waarden tellen als verzuim. Bij samenloop geldt de meest specifieke waarde.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Waarde</th>
+<th style="text-align: left;">Definitie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Ziekte</td>
+<td style="text-align: left;">Verzuim door ziekte, niet vallend onder een van de andere waarden.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Ziekte onder vangnet Ziektewet</td>
+<td style="text-align: left;">Verzuim waarvoor de werknemer onder een vangnetbepaling van de Ziektewet valt, zoals ziekte als gevolg van zwangerschap. Welke bepaling het is, wordt niet vastgelegd.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Arbeidsongeval</td>
+<td style="text-align: left;">Verzuim dat verband houdt met een ongeval tijdens het werk.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Ongeval met aansprakelijke derde</td>
+<td style="text-align: left;">Verzuim door een ongeval waarvoor een derde aansprakelijk kan zijn, bijvoorbeeld een verkeersongeval. Van belang voor het verhalen van loonkosten.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Overig</td>
+<td style="text-align: left;">Een andere of onbekende soort.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Werkomgeving">Werkomgeving<a class="headerlink" href="#Werkomgeving" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>De omgeving waarin het werk van een functie zich hoofdzakelijk afspeelt.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Waarde</th>
+<th style="text-align: left;">Definitie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Binnendienst</td>
+<td style="text-align: left;">Overwegend kantoor- of beeldschermwerk.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Buitendienst</td>
+<td style="text-align: left;">Overwegend fysiek werk op locatie of in de buitenruimte, zoals groen, afval, reiniging, beheer en handhaving.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gemengd</td>
+<td style="text-align: left;">Een wezenlijk deel van beide.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Terug naar boven
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Gekopieerd naar klembord", "clipboard.copy": "Kopi\u00ebren naar klembord", "search.result.more.one": "1 extra overeenkomst op deze pagina", "search.result.more.other": "# extra overeenkomsten op deze pagina", "search.result.none": "Geen overeenkomende documenten", "search.result.one": "1 overeenkomende document", "search.result.other": "# overeenkomende documenten", "search.result.placeholder": "Typ om te beginnen met zoeken", "search.result.term.missing": "Ontbreekt", "select.version": "Selecteer versie"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,14 @@
+/* Afbeeldingen met een link openen op ware grootte. */
+.md-typeset a img {
+  cursor: zoom-in;
+}
+
+/* Lange codeblokken (het schema, de voorbeelden) krijgen een eigen schuifbalk. */
+.md-typeset details pre > code {
+  max-height: 36rem;
+}
+
+/* Brede tabellen in de detailspecificatie en de uitleg: de eerste kolom breekt niet af. */
+.md-typeset table:not([class]) td:first-child {
+  white-space: nowrap;
+}
