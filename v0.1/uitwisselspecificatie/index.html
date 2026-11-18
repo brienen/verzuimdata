@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://brienen.github.io/verzuimdata/latest/uitwisselspecificatie/">
       
       
-        <link rel="prev" href="../uitleg_Uitwisselmodel/">
+        <link rel="prev" href="..">
       
       
         <link rel="next" href="../aanlevering/">
@@ -289,29 +289,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../uitleg_Uitwisselmodel/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Uitgelegd
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -446,29 +423,6 @@
   
   <span class="md-ellipsis">
     Selectie en aanlevering
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../indicatoren/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Van gegevens naar indicatoren
     
   </span>
   
@@ -772,7 +726,7 @@
 
 <h1 id="json-schema-en-voorbeelden">JSON-schema en voorbeelden<a class="headerlink" href="#json-schema-en-voorbeelden" title="Permanent link">&para;</a></h1>
 <h2 id="inleiding">Inleiding<a class="headerlink" href="#inleiding" title="Permanent link">&para;</a></h2>
-<p>De uitwisselspecificatie legt vast welke gegevens worden aangeleverd en in welke vorm. De vastlegging is een <a href="https://json-schema.org">JSON-schema</a> (versie 2020-12). Het schema is afgeleid van het <a href="../Hoofdlijnen_Model%20HR/">informatiemodel</a>. Een beschrijving in gewone taal staat op de pagina <a href="../uitleg_Uitwisselmodel/">Uitwisselspecificatie uitgelegd</a>.</p>
+<p>De uitwisselspecificatie legt vast welke gegevens worden aangeleverd en in welke vorm. De vastlegging is een <a href="https://json-schema.org">JSON-schema</a> (versie 2020-12). Het schema is afgeleid van het <a href="../Hoofdlijnen_Model%20HR/">informatiemodel</a>. De betekenis van elk veld staat als omschrijving in het schema; de definities van de objecttypen en waardelijsten staan in de <a href="../definities/Detail_Model%20HR/">detailspecificatie</a>.</p>
 <p>Een bericht is als volgt opgebouwd:</p>
 <ol>
 <li>Op het hoofdniveau staat het bericht, met de gegevensleverancier, de begin- en einddatum van de verslagperiode en het moment van aanleveren.</li>
@@ -794,7 +748,7 @@
 <p>Een aantal regels kan een JSON-schema niet uitdrukken. Zij staan op de pagina <a href="../aanlevering/#regels-buiten-het-schema">Selectie en aanlevering</a>.</p>
 <h2 id="het-schema">Het schema<a class="headerlink" href="#het-schema" title="Permanent link">&para;</a></h2>
 <p>Van het schema is ook een <a href="https://raw.githubusercontent.com/brienen/verzuimdata/main/v0.1/json_schema_Uitwisselmodel.json">downloadversie</a> beschikbaar.</p>
-<details><summary>Toon JSON-schema</summary>
+<details open><summary>Toon JSON-schema</summary>
 <div class="copy highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">"$schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://json-schema.org/draft/2020-12/schema"</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"$id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://raw.githubusercontent.com/brienen/verzuimdata/main/v0.1/json_schema_Uitwisselmodel.json"</span><span class="p">,</span>
@@ -1962,7 +1916,7 @@
 
 <h3 id="meervoudig-voorbeeld">Meervoudig voorbeeld<a class="headerlink" href="#meervoudig-voorbeeld" title="Permanent link">&para;</a></h3>
 <p>Twee leveringen van één leverancier voor twee gemeenten. Het voorbeeld laat alle soorten aanstelling zien (arbeidsovereenkomst, detachering, stage), een leidinggevende rol, inzet voor derden, een verzuimgeval met gedeeltelijk herstel, lopend verzuim en verlof. Dit voorbeeld is ook te <a href="https://raw.githubusercontent.com/brienen/verzuimdata/main/v0.1/meervoudigVoorbeeld.json">downloaden</a>.</p>
-<details><summary>Toon voorbeeldbestand</summary>
+<details open><summary>Toon voorbeeldbestand</summary>
 <div class="copy highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">"codeGegevensleverancier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HR-leverancier XYZ, pakket 2026.4"</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"versieSpecificatie"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v0.1"</span><span class="p">,</span>
